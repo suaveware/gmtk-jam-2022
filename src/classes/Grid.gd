@@ -17,23 +17,24 @@ func _init() -> void:
 			positions[Vector2(i, j)] = {}
 
 func _ready() -> void:
-	generate()
+	pass
 
 
-func generate() -> void:
-	var new_tiles := []
-
+func load_level(level: Level = null):
+	if(level):
+		for tile in level.Tiles:
+			instantiate_tile(tile.x, tile.y, tile.z)
+			pass
 	for i in range(0, width):
 		for j in range(0, height):
-			var new_tile = tile.instance()
-			new_tile.value = rand_range(0,6)
-			new_tiles.push_back(new_tile)
-			yield(get_tree(), "idle_frame")
-			new_tile.translation = (Vector3(i * tile_size, 0, j * tile_size))
-			get_parent().add_child(new_tile)
+			instantiate_tile(i, j, rand_range(1,7))
 
-			positions[Vector2(i, j)] = new_tile
-
+func instantiate_tile(x: int, y: int, value: int):
+	var new_tile = tile.instance()
+	new_tile.value = value
+	get_parent().call_deferred("add_child", new_tile)
+	new_tile.translation = (Vector3(x, 0, y) * tile_size)
+	positions[Vector2(x, y)] = new_tile
 
 func _on_Player_moved(direction: Vector3) -> void:
 	match direction:
