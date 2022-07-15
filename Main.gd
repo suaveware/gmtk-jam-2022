@@ -16,5 +16,5 @@ func _ready() -> void:
 			new_tile.visible = true
 			new_tiles.push_back(new_tile)
 			yield(get_tree(), "idle_frame")
-			new_tile.translation = (Vector3(i * side_size, 0, j * side_size))
+			new_tile.translation = (Vector3(i * side_size, new_tile.translation.y, j * side_size))
 			get_parent().add_child(new_tile)

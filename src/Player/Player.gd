@@ -1,101 +1,53 @@
-extends CSGBox
-
-enum Direction { RIGHT, LEFT, UP, DOWN }
-
-const RELATION : = 0.20710678118654757
-
-var max_height := height + height * RELATION
-var min_height := height
-
-var duration = 0.5
-
-onready var TRANS = $Tween.TRANS_QUAD
-onready var EASE = $Tween.EASE_IN
+extends Spatial
 
 
-func _ready() -> void:
-	yield(get_tree().create_timer(2), "timeout")
-	$Tween.interpolate_method(
-		self,
-		"up_down",
-		-1,
-		1,
+export var duration = 0.5
+
+onready var pivot = $Pivot
+onready var mesh = $Pivot/Mesh
+onready var tween = $Tween
+
+
+func _physics_process(_delta):
+	var forward = Vector3.FORWARD
+	if Input.is_action_pressed("roll_up"):
+		roll(forward)
+	if Input.is_action_pressed("roll_down"):
+		roll(-forward)
+	if Input.is_action_pressed("roll_right"):
+		roll(forward.cross(Vector3.UP))
+	if Input.is_action_pressed("roll_left"):
+		roll(-forward.cross(Vector3.UP))
+
+
+func roll(dir):
+	# Do nothing if we're currently rolling.
+	if tween.is_active():
+		return
+
+	## Step 1: Offset the pivot
+	pivot.translate(dir)
+	mesh.translate(-dir)
+
+	## Step 2: Animate the rotation
+	var axis = dir.cross(Vector3.DOWN)
+	tween.interpolate_property(
+		pivot,
+		"transform:basis",
+		null,
+		pivot.transform.basis.rotated(axis, PI/2),
 		duration,
-		TRANS,
-		EASE
-	)
-	$Tween.interpolate_property(
-		self,
-		"translation:x",
-		0,
-		width,
-		duration,
-		TRANS,
-		EASE
-	)
-	$Tween.interpolate_property(
-		self,
-		"rotation:z",
-		0,
-		deg2rad(-90),
-		duration,
-		TRANS,
-		EASE
+		Tween.TRANS_CIRC,
+		Tween.EASE_IN
 	)
 
-	$Tween.start()
+	tween.start()
+	yield(tween, "tween_all_completed")
 
-func roll(direction: int) -> void:
-	var start_position := translation
-	var final_position_x: float
-	var final_position_z: float
-	var start_angle := rotation
-	var final_angle := start_angle
+	## Step3: Finalize movement and reverse the offset
+	transform.origin += dir * 2
+	pivot.transform = Transform.IDENTITY
+	mesh.transform.origin = Vector3(0, 1, 0)
 
-	match direction:
-		Direction.RIGHT:
-			final_position_x = start_position.x + width
-			final_angle.z -= PI
-		Direction.LEFT:
-			final_position_x = start_position.x - width
-			final_angle.z += PI
-		Direction.UP:
-			final_position_z = start_position.z - width
-			final_angle.x -= PI
-		Direction.DOWN:
-			final_position_z = start_position.z + width
-			final_angle.x += PI
-
-	$Tween.interpolate_method(
-		self,
-		"up_down",
-		-1,
-		1,
-		duration,
-		TRANS,
-		EASE
-	)
-	$Tween.interpolate_property(
-		self,
-		"translation:x",
-		start_position,
-		final_position_x,
-		duration,
-		TRANS,
-		EASE
-	)
-	$Tween.interpolate_property(
-		self,
-		"rotation:z",
-		0,
-		deg2rad(-90),
-		duration,
-		TRANS,
-		EASE
-	)
-
-	$Tween.start()
-
-func up_down(ammount: float) -> void:
-	var difference = max_height - min_height
-	translation.y = max_height - abs(ammount * difference)
+func _on_Tween_tween_step(_object, _key, _elapsed, _value):
+	pivot.transform = pivot.transform.orthonormalized()
