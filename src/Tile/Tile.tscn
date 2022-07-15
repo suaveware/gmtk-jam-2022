@@ -16,4 +16,5 @@ script = ExtResource( 1 )
 
 [node name="Dot" type="CSGSphere" parent="."]
 transform = Transform( 0.15, 0, 0, 0, 0.15, 0, 0, 0, 0.15, 0, 0, 0 )
+visible = false
 material = SubResource( 2 )
