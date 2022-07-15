@@ -50,11 +50,27 @@ func _on_Player_moved(direction: Vector3) -> void:
 			player_grid_position.x -= 1
 
 	var tile = positions[player_grid_position]
+	var facing_down_direction = get_facing_down_direction()
 	for child in tile.get_children():
 		var g = child.global_transform
 		tile.remove_child(child)
-		player_mesh.add_child(child)
+		facing_down_direction.add_child(child)
 
 		child.global_transform = g
 
+
+func get_facing_down_direction() -> Position3D:
+	var lowest: Position3D = null
+	for child in player_mesh.get_children():
+		if !lowest:
+			lowest = child
+			continue
+
+		var lowest_height: float = lowest.to_global(lowest.translation).y
+		var child_height: float = child.to_global(child.translation).y
+
+		if child_height < lowest_height:
+			lowest = child
+
+	return lowest
 
