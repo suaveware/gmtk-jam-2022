@@ -12,7 +12,7 @@ const DOT_POSITIONS = [
 export var value: int
 
 func _ready():
-	var dot_positions = DOT_POSITIONS[value]
+	var dot_positions = DOT_POSITIONS[value-1]
 	var dot = $Dot
 	for i in range(len(dot_positions)):
 		var new_dot = dot.duplicate()

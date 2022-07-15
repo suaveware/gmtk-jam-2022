@@ -1,7 +1,12 @@
 extends Spatial
 
+
+onready var grid = get_node("Grid")
+
+var level = preload("res://src/levels/tutorial.tres")
+
 func _ready() -> void:
-	pass
+	grid.load_level(level)
 
 func _physics_process(_delta):
 	if Input.is_action_pressed("roll_up"):
