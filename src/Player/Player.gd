@@ -2,6 +2,8 @@ extends Spatial
 
 signal moved
 
+var face_values = { Left = 0, Right = 0, Forward = 0, Back = 0, Up = 0, Down = 0 }
+
 export var duration = 0.5
 
 onready var pivot = $Pivot
@@ -44,6 +46,26 @@ func roll(dir):
 	mesh.global_transform = mesh_global_transform
 
 	emit_signal("moved", dir)
+
+func has_good_faces() -> bool:
+	if face_values.Left + face_values.Right != 7:
+		return false
+
+	if face_values.Up + face_values.Down != 7:
+		return false
+
+	if face_values.Forward + face_values.Back != 7:
+		return false
+
+	return true
+
+
+func reset() -> void:
+	face_values = { Left = 0, Right = 0, Forward = 0, Back = 0, Up = 0, Down = 0 }
+
+	for direction in mesh.get_children():
+		for ball in direction.get_children():
+			ball.queue_free()
 
 
 func _on_Tween_tween_step(_object, _key, _elapsed, _value):

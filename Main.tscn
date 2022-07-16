@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://src/Player/Player.gd" type="Script" id=1]
 [ext_resource path="res://src/classes/Grid.gd" type="Script" id=2]
+[ext_resource path="res://src/classes/CameraPivot.gd" type="Script" id=3]
 [ext_resource path="res://Main.gd" type="Script" id=4]
 
 [sub_resource type="SpatialMaterial" id=2]
@@ -14,16 +15,16 @@ script = ExtResource( 2 )
 
 [node name="Tween" type="Tween" parent="Grid"]
 
-[node name="Camera2" type="Camera" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.87376, 14.2098 )
-projection = 1
-size = 10.0
+[node name="CameraPivot" type="Spatial" parent="."]
+script = ExtResource( 3 )
 
-[node name="Camera" type="Camera" parent="."]
-transform = Transform( 0.707107, -0.353553, 0.612373, 0, 0.866026, 0.5, -0.707107, -0.353553, 0.612373, 39.6489, 29.9864, 39.6489 )
+[node name="Camera" type="Camera" parent="CameraPivot"]
+transform = Transform( 0.707107, -0.353553, 0.612373, 0, 0.866026, 0.499999, -0.707107, -0.353553, 0.612373, 38.8885, 31.849, 38.8885 )
 projection = 1
 current = true
 size = 20.0
+
+[node name="Tween" type="Tween" parent="CameraPivot"]
 
 [node name="Player" type="Spatial" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0 )
@@ -57,5 +58,8 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0 )
 [node name="Down" type="Position3D" parent="Player/Pivot/Rotator/Mesh"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0 )
 
+[connection signal="player_won" from="Grid" to="." method="_on_Grid_player_won"]
+[connection signal="rotated" from="CameraPivot" to="." method="_on_CameraPivot_rotated"]
+[connection signal="moved" from="Player" to="." method="_on_Player_moved"]
 [connection signal="moved" from="Player" to="Grid" method="_on_Player_moved"]
 [connection signal="tween_step" from="Player/Tween" to="Player" method="_on_Tween_tween_step"]
