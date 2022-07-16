@@ -1,10 +1,14 @@
 extends Spatial
 
+enum { PRE_GAME, IN_PROGRESS, PLAYER_WON }
+
+signal game_started
 
 onready var grid = get_node("Grid")
 
 var level = preload("res://src/levels/tutorial.tres")
 var has_won := false
+var game_state := PRE_GAME
 
 var player_movements = [
 	{input = "roll_up", direction = Vector3.FORWARD},

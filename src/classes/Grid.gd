@@ -36,10 +36,10 @@ func load_level(level: Level = null):
 			instantiate_tile(tile.x, tile.y, tile.z)
 		player_grid_position = level.StartPosition
 		player.translation = Vector3(level.StartPosition.x* tile_size,1,level.StartPosition.y* tile_size) + translation
-	for i in range(0, width):
-		for j in range(0, height):
-			if(!positions.get(Vector2(i, j))):
-				instantiate_tile(i, j, rand_range(1,7))
+#	for i in range(0, width):
+#		for j in range(0, height):
+#			if(!positions.get(Vector2(i, j))):
+#				instantiate_tile(i, j, rand_range(1,7))
 
 func instantiate_tile(x: int, y: int, value: int):
 	var new_tile = tile.instance()
@@ -62,8 +62,15 @@ func _on_Player_moved(direction: Vector3) -> void:
 		Vector3.LEFT:
 			player_grid_position.x -= 1
 
+	glue_balls_to_player()
+
+	if player.has_good_faces():
+		emit_signal("player_won")
+
+
+func glue_balls_to_player() -> void:
 	var tile = positions[player_grid_position]
-	var facing_down_direction = get_facing_down_direction()
+	var facing_down_direction: Position3D = get_facing_down_direction()
 	var is_empty = tile.get_children().size() == 0
 
 	if is_empty:
@@ -79,9 +86,6 @@ func _on_Player_moved(direction: Vector3) -> void:
 	var current_face_value = player.face_values[facing_down_direction.name]
 
 	player.face_values[facing_down_direction.name] = calculate_facing_points(current_face_value, tile, facing_down_direction)
-
-	if player.has_good_faces():
-		emit_signal("player_won")
 
 
 func get_facing_down_direction() -> Position3D:
@@ -101,25 +105,12 @@ func get_facing_down_direction() -> Position3D:
 
 
 func player_can_roll(direction: Vector3):
-	if owner.has_won:
+	if owner.game_state != owner.IN_PROGRESS:
 		return false
 
 	var target_grid_position = player_grid_position + Vector2(direction.x, direction.z)
 
 	return not not positions.get(target_grid_position)
-
-
-#	match(direction):
-#		Vector3.FORWARD:
-#
-#			return player_grid_position.y > 0
-#		Vector3.BACK:
-#			return player_grid_position.y < height-1
-#		Vector3.RIGHT:
-#			return player_grid_position.x < width-1
-#		Vector3.LEFT:
-#			return player_grid_position.x > 0
-#	return false
 
 
 func calculate_facing_points(current_face_value, tile, facing_down_direction) -> int:
@@ -148,3 +139,7 @@ func calculate_facing_points(current_face_value, tile, facing_down_direction) ->
 					return -1
 		_:
 			return -1
+
+
+func _on_Main_game_started() -> void:
+	glue_balls_to_player()
