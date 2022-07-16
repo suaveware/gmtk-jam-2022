@@ -29,24 +29,40 @@ func load_level(level: Level = null):
 	player.reset()
 	for child in get_children():
 		positions = {}
-		child.queue_free()
+		if(!child is Tween):
+			child.queue_free()
 
 	if(level):
 		for tile in level.Tiles:
 			instantiate_tile(tile.x, tile.y, tile.z)
 		player_grid_position = level.StartPosition
-		player.translation = Vector3(level.StartPosition.x* tile_size,1,level.StartPosition.y* tile_size) + translation
-#	for i in range(0, width):
-#		for j in range(0, height):
-#			if(!positions.get(Vector2(i, j))):
-#				instantiate_tile(i, j, rand_range(1,7))
+		player.translation = Vector3(level.StartPosition.x* tile_size,15,level.StartPosition.y* tile_size) + translation
+		$Tween.interpolate_property(
+			player,
+			'translation:y',
+			12, 1, 1,
+			Tween.TRANS_BOUNCE,
+			Tween.EASE_OUT, 0.5)
+	# for i in range(0, width):
+	# 	for j in range(0, height):
+	# 		if(!positions.get(Vector2(i, j))):
+	# 			instantiate_tile(i, j, rand_range(1,7))
+	$Tween.start()
 
 func instantiate_tile(x: int, y: int, value: int):
 	var new_tile = tile.instance()
 	new_tile.value = value
 	call_deferred("add_child", new_tile)
-	new_tile.translation = (Vector3(x, 0, y) * tile_size)
+	new_tile.translation = (Vector3(x, 20, y) * tile_size)
 	positions[Vector2(x, y)] = new_tile
+	$Tween.interpolate_property(
+		new_tile,
+		'translation:y',
+		12, 0, 1,
+		Tween.TRANS_ELASTIC,
+		Tween.EASE_OUT,
+		((x + y) as float) / 20)
+	
 
 func _on_Player_moved(direction: Vector3) -> void:
 	match direction:
