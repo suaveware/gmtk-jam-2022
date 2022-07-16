@@ -95,10 +95,17 @@ margin_bottom = 99.23
 rect_min_size = Vector2( 0, 99.23 )
 text = "Start game"
 
-[node name="QuitButton" type="Button" parent="VBoxContainer"]
+[node name="LevelsButton" type="Button" parent="VBoxContainer"]
 margin_top = 119.0
 margin_right = 484.0
 margin_bottom = 218.23
+rect_min_size = Vector2( 0, 99.23 )
+text = "Levels"
+
+[node name="QuitButton" type="Button" parent="VBoxContainer"]
+margin_top = 238.0
+margin_right = 484.0
+margin_bottom = 337.23
 rect_min_size = Vector2( 0, 99.23 )
 text = "Quit"
 
@@ -114,4 +121,5 @@ margin_bottom = -17.0
 text = "by Suaveware"
 
 [connection signal="pressed" from="VBoxContainer/StartButton" to="." method="_on_StartButton_pressed"]
+[connection signal="pressed" from="VBoxContainer/LevelsButton" to="." method="_on_LevelsButton_pressed"]
 [connection signal="pressed" from="VBoxContainer/QuitButton" to="." method="_on_QuitButton_pressed"]

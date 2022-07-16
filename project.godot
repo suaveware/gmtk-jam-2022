@@ -27,6 +27,7 @@ config/icon="res://icon.png"
 [autoload]
 
 AudioManager="*res://src/autoloads/AudioManager.tscn"
+GlobalState="*res://src/autoloads/GlobalState.gd"
 
 [display]
 
