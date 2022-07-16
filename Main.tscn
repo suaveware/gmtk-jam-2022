@@ -56,6 +56,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0 )
 [node name="Down" type="Position3D" parent="Player/Pivot/Rotator/Mesh"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0 )
 
+[connection signal="player_won" from="Grid" to="." method="_on_Grid_player_won"]
 [connection signal="rotated" from="CameraPivot" to="." method="_on_CameraPivot_rotated"]
 [connection signal="moved" from="Player" to="." method="_on_Player_moved"]
 [connection signal="moved" from="Player" to="Grid" method="_on_Player_moved"]

@@ -1,5 +1,7 @@
 extends Spatial
 
+signal player_won
+
 export var width := 6
 export var height := 6
 export var tile_size = 2
@@ -24,6 +26,9 @@ func _ready() -> void:
 
 
 func load_level(level: Level = null):
+	for child in get_children():
+		child.queue_free()
+
 	if(level):
 		for tile in level.Tiles:
 			instantiate_tile(tile.x, tile.y, tile.z)
@@ -33,8 +38,6 @@ func load_level(level: Level = null):
 		for j in range(0, height):
 			if(!positions[Vector2(i, j)]):
 				instantiate_tile(i, j, rand_range(1,7))
-			else:
-				print('already tile at ',i,j)
 
 func instantiate_tile(x: int, y: int, value: int):
 	var new_tile = tile.instance()
@@ -59,16 +62,24 @@ func _on_Player_moved(direction: Vector3) -> void:
 
 	var tile = positions[player_grid_position]
 	var facing_down_direction = get_facing_down_direction()
+	var is_empty = tile.get_children().size() == 0
+
+	if is_empty:
+		return
+
 	for child in tile.get_children():
-		var g = child.global_transform
+		var g_transform = child.global_transform
 		tile.remove_child(child)
 		facing_down_direction.add_child(child)
 
-		child.global_transform = g
+		child.global_transform = g_transform
 
 	var current_face_value = player.face_values[facing_down_direction.name]
 
 	player.face_values[facing_down_direction.name] = calculate_facing_points(current_face_value, tile, facing_down_direction)
+
+	if player.has_good_faces():
+		emit_signal("player_won")
 
 
 func get_facing_down_direction() -> Position3D:
@@ -88,6 +99,9 @@ func get_facing_down_direction() -> Position3D:
 
 
 func player_can_roll(position: Vector3):
+	if owner.has_won:
+		return false
+
 	match(position):
 		Vector3.FORWARD:
 			return player_grid_position.y > 0

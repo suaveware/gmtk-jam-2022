@@ -22,9 +22,10 @@ func _physics_process(_delta):
 			$Player.roll(movement.direction)
 
 
-func _on_Player_moved(direction) -> void:
-	if $Player.has_good_faces():
-		has_won = true
+func _input(event: InputEvent) -> void:
+	if event is InputEventKey and event.pressed:
+		if event.scancode == KEY_R:
+			grid.load_level(level)
 
 
 func _on_CameraPivot_rotated(direction: String) -> void:
@@ -43,3 +44,7 @@ func _on_CameraPivot_rotated(direction: String) -> void:
 			player_movements[2].input = player_movements[3].input
 			player_movements[3].input = first_movement
 
+
+func _on_Grid_player_won() -> void:
+	has_won = true
+	pass
