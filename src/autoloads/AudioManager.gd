@@ -8,6 +8,8 @@ func _ready() -> void:
 
 
 func play(sound: String) -> void:
+	if(current_background == sound):
+		return
 	current_background = sound
 
 	for child in get_children():

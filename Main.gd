@@ -7,11 +7,10 @@ signal game_state_changed(new_state)
 onready var grid = get_node("Grid")
 
 export var levels: = []
-export var level_index := 1
 
 var game_state := PRE_GAME setget set_game_state
 
-onready var level = load(levels[level_index])
+onready var level = load(levels[GlobalState.level_index])
 
 var player_movements = [
 	{input = "roll_up", direction = Vector3.FORWARD},
@@ -38,9 +37,9 @@ func _input(event: InputEvent) -> void:
 
 
 func next_level() -> void:
-	if level_index < levels.size() - 1:
-		level_index += 1
-		level = load(levels[level_index])
+	if GlobalState.level_index < levels.size() - 1:
+		GlobalState.level_index += 1
+		level = load(levels[GlobalState.level_index])
 		grid.load_level(level)
 
 	AudioManager.play("GameLoop")

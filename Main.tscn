@@ -48,9 +48,11 @@ Q, E to rotate view
 W, A, S, D to roll"
 
 [node name="DiceHud" parent="CanvasLayer/Gui" instance=ExtResource( 6 )]
+visible = false
 player_path = NodePath("../../../Player")
 
 [node name="NiceRoll" type="Label" parent="CanvasLayer/Gui"]
+visible = false
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -74,6 +76,13 @@ margin_top = 661.5
 margin_right = 153.0
 margin_bottom = 743.5
 text = "Next level"
+
+[node name="TutorialText" type="Label" parent="CanvasLayer/Gui"]
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = -192.0
+align = 1
 
 [node name="Grid" type="Spatial" parent="."]
 script = ExtResource( 2 )

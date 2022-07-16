@@ -8,3 +8,4 @@ LevelSize = Vector2( 6, 6 )
 Tiles = [ Vector3( 1, 0, 0 ), Vector3( 2, 0, 1 ), Vector3( 3, 0, 0 ), Vector3( 0, 1, 0 ), Vector3( 1, 1, 6 ), Vector3( 2, 1, 7 ), Vector3( 3, 1, 5 ), Vector3( 4, 1, 1 ), Vector3( 1, 2, 4 ), Vector3( 2, 2, 0 ), Vector3( 3, 2, 3 ), Vector3( 2, 3, 2 ) ]
 StartPosition = Vector2( 0, 1 )
 shouldFillGrid = false
+tutorial = "The trash tile can clear a face, but only once"

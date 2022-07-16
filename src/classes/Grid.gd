@@ -12,6 +12,8 @@ var tile = preload("res://src/Tile/Tile.tscn")
 onready var player_mesh := $"../Player/Pivot/Rotator/Mesh"
 onready var player = $"../Player"
 
+onready var tutorial_label = $"../CanvasLayer/Gui/TutorialText"
+
 
 func load_level(level = null):
 	var position_sum: = Vector3.ZERO
@@ -49,7 +51,7 @@ func load_level(level = null):
 			for j in range(0, level.LevelSize.y):
 				if(!positions.get(Vector2(i, j))):
 					instantiate_tile(i, j, rand_range(0,7))
-
+	tutorial_label.text = level.tutorial
 	$Tween.start()
 	yield(get_tree().create_timer(player_fall_delay + 0.3), "timeout")
 	AudioManager.sfx("FullRoll")
