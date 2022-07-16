@@ -20,7 +20,7 @@ _global_script_class_icons={
 
 [application]
 
-config/name="2022 Gtmk"
+config/name="Dye the die"
 run/main_scene="res://src/StartMenu/StartMenu.tscn"
 config/icon="res://icon.png"
 

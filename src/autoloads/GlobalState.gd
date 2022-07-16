@@ -1,3 +1,3 @@
 extends Node
 
-var level_index := 1
+var level_index := 0
