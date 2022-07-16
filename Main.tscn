@@ -26,10 +26,10 @@ anchor_bottom = 1.0
 theme = ExtResource( 5 )
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Gui"]
-margin_left = 10.0
-margin_top = 10.0
-margin_right = 40.0
-margin_bottom = 40.0
+margin_left = 29.0
+margin_top = 31.0
+margin_right = 304.0
+margin_bottom = 190.0
 
 [node name="Label" type="Label" parent="CanvasLayer/Gui/HBoxContainer"]
 margin_right = 275.0

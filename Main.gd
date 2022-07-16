@@ -21,6 +21,7 @@ var player_movements = [
 ]
 
 func _ready() -> void:
+	AudioManager.play("GameLoop")
 	grid.load_level(level)
 
 func _physics_process(_delta):
@@ -32,6 +33,7 @@ func _physics_process(_delta):
 func _input(event: InputEvent) -> void:
 	if event is InputEventKey and event.pressed:
 		if event.scancode == KEY_R:
+			AudioManager.play_between_current("Lost")
 			grid.load_level(level)
 
 
@@ -61,6 +63,7 @@ func _on_CameraPivot_rotated(direction: String) -> void:
 
 func _on_Grid_player_won() -> void:
 	self.game_state = PLAYER_WON
+	AudioManager.play_between_current("Victory", true)
 	next_level()
 	pass
 

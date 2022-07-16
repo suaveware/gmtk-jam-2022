@@ -19,26 +19,26 @@ margin_right = -232.0
 alignment = 1
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
-margin_top = 507.0
+margin_top = 497.0
 margin_right = 1456.0
-margin_bottom = 568.0
+margin_bottom = 579.0
 
 [node name="LevelName" type="LineEdit" parent="VBoxContainer/HBoxContainer"]
 margin_right = 300.0
-margin_bottom = 61.0
+margin_bottom = 82.0
 rect_min_size = Vector2( 300, 0 )
 placeholder_text = "Level name"
 
 [node name="SaveButton" type="Button" parent="VBoxContainer/HBoxContainer"]
 margin_left = 304.0
-margin_right = 381.0
-margin_bottom = 61.0
+margin_right = 408.0
+margin_bottom = 82.0
 text = "Save"
 
 [node name="GridContainer" type="GridContainer" parent="VBoxContainer"]
-margin_top = 572.0
+margin_top = 583.0
 margin_right = 1456.0
-margin_bottom = 572.0
+margin_bottom = 583.0
 grow_horizontal = 2
 grow_vertical = 2
 columns = 10

@@ -24,6 +24,10 @@ config/name="2022 Gtmk"
 run/main_scene="res://src/StartMenu/StartMenu.tscn"
 config/icon="res://icon.png"
 
+[autoload]
+
+AudioManager="*res://src/autoloads/AudioManager.tscn"
+
 [display]
 
 window/size/width=1920

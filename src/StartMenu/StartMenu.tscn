@@ -21,6 +21,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id=2]
 resource_name = "menu-loop"
+length = 2.0
 loop = true
 tracks/0/type = "value"
 tracks/0/path = NodePath("Label:rect_rotation")
@@ -29,7 +30,7 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.5, 1 ),
+"times": PoolRealArray( 0, 1, 2 ),
 "transitions": PoolRealArray( 0.5, 0.5, 1 ),
 "update": 0,
 "values": [ 4.08172, -6.31944, 4.08172 ]
