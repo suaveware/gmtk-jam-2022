@@ -7,7 +7,7 @@ signal game_state_changed(new_state)
 onready var grid = get_node("Grid")
 
 export var levels: = []
-export var level_index := 4
+export var level_index := 1
 
 var game_state := PRE_GAME setget set_game_state
 

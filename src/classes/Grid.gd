@@ -29,8 +29,8 @@ func load_level(level = null):
 
 	# Position camera in the center
 	var tiles_position_average: Vector3 = position_sum / level.Tiles.size()
-	translation.x -= tiles_position_average.x + 1
-	translation.z -= tiles_position_average.y + 1
+	translation.x = -tiles_position_average.x - 1
+	translation.z = -tiles_position_average.y - 1
 
 	player_grid_position = level.StartPosition
 	player.translation = Vector3(level.StartPosition.x* tile_size,15,level.StartPosition.y* tile_size) + translation
