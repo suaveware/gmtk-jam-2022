@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/dieShuffle1.ogg-5b2ff91f280b097bdf34911bff9f2992.oggstr"
+
+[deps]
+
+source_file="res://src/DiceHud/EduSABeginner-Bold/Bonus/dieShuffle1.ogg"
+dest_files=[ "res://.import/dieShuffle1.ogg-5b2ff91f280b097bdf34911bff9f2992.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

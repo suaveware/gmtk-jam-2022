@@ -1,16 +1,17 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://src/Player/Player.gd" type="Script" id=1]
 [ext_resource path="res://src/classes/Grid.gd" type="Script" id=2]
 [ext_resource path="res://src/classes/CameraPivot.gd" type="Script" id=3]
 [ext_resource path="res://Main.gd" type="Script" id=4]
 [ext_resource path="res://theme.tres" type="Theme" id=5]
+[ext_resource path="res://src/DiceHud/DiceHud.tscn" type="PackedScene" id=6]
 
 [sub_resource type="SpatialMaterial" id=2]
 
 [node name="Main" type="Spatial"]
 script = ExtResource( 4 )
-levels = [ "res://src/levels/test.tres", "res://src/levels/tutorial.tres" ]
+levels = [ "res://src/levels/tutorial.tres", "res://src/levels/test.tres" ]
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -29,6 +30,9 @@ margin_bottom = 40.0
 margin_right = 102.0
 margin_bottom = 51.0
 text = "Victory"
+
+[node name="DiceHud" parent="CanvasLayer/Gui" instance=ExtResource( 6 )]
+player_path = NodePath("../../../Player")
 
 [node name="Grid" type="Spatial" parent="."]
 script = ExtResource( 2 )

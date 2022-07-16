@@ -61,7 +61,12 @@ func has_good_faces() -> bool:
 
 
 func reset() -> void:
-	face_values = { Left = 0, Right = 0, Forward = 0, Back = 0, Up = 0, Down = 0 }
+	face_values.Left = 0
+	face_values.Right = 0
+	face_values.Forward = 0
+	face_values.Back = 0
+	face_values.Up = 0
+	face_values.Down = 0
 
 	for direction in mesh.get_children():
 		for ball in direction.get_children():
