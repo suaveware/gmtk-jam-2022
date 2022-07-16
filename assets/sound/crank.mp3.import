@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/crank.mp3-bc1a863dd070443dcc0e23400999cb3e.mp3str"
+
+[deps]
+
+source_file="res://assets/sound/crank.mp3"
+dest_files=[ "res://.import/crank.mp3-bc1a863dd070443dcc0e23400999cb3e.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

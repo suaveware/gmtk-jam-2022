@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://assets/sound/buildup.wav" type="AudioStream" id=1]
 [ext_resource path="res://src/autoloads/AudioManager.gd" type="Script" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://assets/sound/loose.wav" type="AudioStream" id=5]
 [ext_resource path="res://assets/sound/roll.wav" type="AudioStream" id=6]
 [ext_resource path="res://assets/sound/fullroll.wav" type="AudioStream" id=7]
+[ext_resource path="res://assets/sound/crank2.wav" type="AudioStream" id=8]
 
 [node name="AudioManager" type="Node"]
 script = ExtResource( 2 )
@@ -34,3 +35,7 @@ volume_db = 2.622
 [node name="FullRoll" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 7 )
 volume_db = 2.622
+
+[node name="CameraRotate" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 8 )
+volume_db = -5.0
