@@ -10,6 +10,7 @@ var player_grid_position := Vector2.ZERO
 var tile = preload("res://src/Tile/Tile.tscn")
 
 onready var player_mesh := $"../Player/Pivot/Rotator/Mesh"
+onready var player = $"../Player"
 
 func _init() -> void:
 	for i in range(0, width):
@@ -24,10 +25,14 @@ func load_level(level: Level = null):
 	if(level):
 		for tile in level.Tiles:
 			instantiate_tile(tile.x, tile.y, tile.z)
-			pass
+		player_grid_position = level.StartPosition
+		player.translation = Vector3(level.StartPosition.x* tile_size,1,level.StartPosition.y* tile_size) 
 	for i in range(0, width):
 		for j in range(0, height):
-			instantiate_tile(i, j, rand_range(1,7))
+			if(!positions[Vector2(i, j)]):
+				instantiate_tile(i, j, rand_range(1,7))
+			else:
+				print('already tile at ',i,j)
 
 func instantiate_tile(x: int, y: int, value: int):
 	var new_tile = tile.instance()
