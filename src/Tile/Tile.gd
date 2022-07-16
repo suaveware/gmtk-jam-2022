@@ -1,4 +1,4 @@
-extends CSGBox
+extends Spatial
 
 const DOT_POSITIONS = [[],
 	[Vector2(0, 0)],
@@ -18,7 +18,7 @@ func _ready():
 		var new_dot = dot.duplicate()
 		new_dot.set_translation(Vector3(dot_positions[i].x, 1, dot_positions[i].y))
 		new_dot.visible = true
-		add_child(new_dot)
+		$dots.add_child(new_dot)
 
 
 

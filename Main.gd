@@ -6,7 +6,7 @@ signal game_state_changed(new_state)
 
 onready var grid = get_node("Grid")
 
-var level = preload("res://src/levels/tutorial.tres")
+var level = preload("res://src/levels/levelx.tres")
 var game_state := PRE_GAME setget set_game_state
 
 var player_movements = [

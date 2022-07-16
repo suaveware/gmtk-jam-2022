@@ -94,9 +94,11 @@ func glue_balls_to_player() -> void:
 	if is_empty:
 		return
 
-	for child in tile.get_children():
+	var dots = tile.get_node('dots')
+
+	for child in dots.get_children():
 		var g_transform = child.global_transform
-		tile.remove_child(child)
+		dots.remove_child(child)
 		facing_down_direction.add_child(child)
 
 		child.global_transform = g_transform
