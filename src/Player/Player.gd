@@ -59,5 +59,14 @@ func has_good_faces() -> bool:
 
 	return true
 
+
+func reset() -> void:
+	face_values = { Left = 0, Right = 0, Forward = 0, Back = 0, Up = 0, Down = 0 }
+
+	for direction in mesh.get_children():
+		for ball in direction.get_children():
+			ball.queue_free()
+
+
 func _on_Tween_tween_step(_object, _key, _elapsed, _value):
 	pivot.transform = pivot.transform.orthonormalized()

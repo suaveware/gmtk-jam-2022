@@ -26,6 +26,7 @@ func _ready() -> void:
 
 
 func load_level(level: Level = null):
+	player.reset()
 	for child in get_children():
 		positions = {}
 		child.queue_free()
