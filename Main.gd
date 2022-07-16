@@ -7,7 +7,6 @@ signal game_started
 onready var grid = get_node("Grid")
 
 var level = preload("res://src/levels/tutorial.tres")
-var has_won := false
 var game_state := PRE_GAME
 
 var player_movements = [
@@ -50,5 +49,10 @@ func _on_CameraPivot_rotated(direction: String) -> void:
 
 
 func _on_Grid_player_won() -> void:
-	has_won = true
+	game_state = PLAYER_WON
+	pass
+
+
+func _on_Tween_tween_all_completed() -> void:
+	game_state = IN_PROGRESS
 	pass

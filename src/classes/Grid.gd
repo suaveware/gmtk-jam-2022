@@ -25,7 +25,7 @@ func _ready() -> void:
 	pass
 
 
-func load_level(level: Level = null):
+func load_level(level = null):
 	player.reset()
 	for child in get_children():
 		positions = {}
@@ -62,7 +62,7 @@ func instantiate_tile(x: int, y: int, value: int):
 		Tween.TRANS_ELASTIC,
 		Tween.EASE_OUT,
 		((x + y) as float) / 20)
-	
+
 
 func _on_Player_moved(direction: Vector3) -> void:
 	match direction:
