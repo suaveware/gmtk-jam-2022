@@ -1,0 +1,11 @@
+[gd_resource type="Resource" load_steps=2 format=2]
+
+[ext_resource path="res://src/classes/level.gd" type="Script" id=1]
+
+[resource]
+script = ExtResource( 1 )
+LevelSize = Vector2( 6, 6 )
+Tiles = [ Vector3( 0, 1, 1 ), Vector3( 1, 1, 2 ), Vector3( 2, 1, 2 ), Vector3( 3, 1, 4 ), Vector3( 0, 2, 1 ), Vector3( 1, 2, 0 ), Vector3( 2, 2, 6 ), Vector3( 0, 3, 1 ), Vector3( 1, 3, 4 ) ]
+StartPosition = Vector2( 1, 2 )
+shouldFillGrid = false
+tutorial = ""
