@@ -6,8 +6,12 @@ signal game_state_changed(new_state)
 
 onready var grid = get_node("Grid")
 
-var level = preload("res://src/levels/tutorial.tres")
+export var levels: = []
+export var level_index := 0
+
 var game_state := PRE_GAME setget set_game_state
+
+onready var level = load(levels[level_index])
 
 var player_movements = [
 	{input = "roll_up", direction = Vector3.FORWARD},
@@ -31,6 +35,13 @@ func _input(event: InputEvent) -> void:
 			grid.load_level(level)
 
 
+func next_level() -> void:
+	if level_index < levels.size() - 1:
+		level_index += 1
+		level = load(levels[level_index])
+		grid.load_level(level)
+
+
 func _on_CameraPivot_rotated(direction: String) -> void:
 	match direction:
 		"left":
@@ -50,6 +61,7 @@ func _on_CameraPivot_rotated(direction: String) -> void:
 
 func _on_Grid_player_won() -> void:
 	self.game_state = PLAYER_WON
+	next_level()
 	pass
 
 
