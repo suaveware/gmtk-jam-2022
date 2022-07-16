@@ -1,5 +1,6 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=3 format=2]
 
+[ext_resource path="res://src/DiceHud/dieWhite_empty.png" type="Texture" id=1]
 [ext_resource path="res://src/DiceHud/DiceHud.gd" type="Script" id=2]
 
 [node name="DiceHud" type="GridContainer"]
@@ -23,10 +24,12 @@ margin_left = 74.0
 margin_right = 144.0
 margin_bottom = 70.0
 rect_min_size = Vector2( 70, 70 )
+color = Color( 1, 1, 1, 0 )
 
 [node name="FaceImage" type="TextureRect" parent="Forward"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+texture = ExtResource( 1 )
 stretch_mode = 4
 
 [node name="ColorRect3" type="ColorRect" parent="."]
@@ -48,10 +51,12 @@ margin_top = 74.0
 margin_right = 70.0
 margin_bottom = 144.0
 rect_min_size = Vector2( 70, 70 )
+color = Color( 1, 1, 1, 0 )
 
 [node name="FaceImage" type="TextureRect" parent="Left"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+texture = ExtResource( 1 )
 stretch_mode = 4
 
 [node name="Down" type="ColorRect" parent="."]
@@ -60,10 +65,12 @@ margin_top = 74.0
 margin_right = 144.0
 margin_bottom = 144.0
 rect_min_size = Vector2( 70, 70 )
+color = Color( 1, 1, 1, 0 )
 
 [node name="FaceImage" type="TextureRect" parent="Down"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+texture = ExtResource( 1 )
 stretch_mode = 4
 
 [node name="Right" type="ColorRect" parent="."]
@@ -72,10 +79,12 @@ margin_top = 74.0
 margin_right = 218.0
 margin_bottom = 144.0
 rect_min_size = Vector2( 70, 70 )
+color = Color( 1, 1, 1, 0 )
 
 [node name="FaceImage" type="TextureRect" parent="Right"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+texture = ExtResource( 1 )
 stretch_mode = 4
 
 [node name="Up" type="ColorRect" parent="."]
@@ -84,10 +93,12 @@ margin_top = 74.0
 margin_right = 292.0
 margin_bottom = 144.0
 rect_min_size = Vector2( 70, 70 )
+color = Color( 1, 1, 1, 0 )
 
 [node name="FaceImage" type="TextureRect" parent="Up"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+texture = ExtResource( 1 )
 stretch_mode = 4
 
 [node name="ColorRect9" type="ColorRect" parent="."]
@@ -103,10 +114,12 @@ margin_top = 148.0
 margin_right = 144.0
 margin_bottom = 218.0
 rect_min_size = Vector2( 70, 70 )
+color = Color( 1, 1, 1, 0 )
 
 [node name="FaceImage" type="TextureRect" parent="Back"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+texture = ExtResource( 1 )
 stretch_mode = 4
 
 [node name="ColorRect11" type="ColorRect" parent="."]
