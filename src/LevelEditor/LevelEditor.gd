@@ -5,9 +5,9 @@ export var level: Resource = Level.new()
 func _ready() -> void:
 	$VBoxContainer/GridContainer.columns = level.LevelSize.x
 	$VBoxContainer/HBoxContainer/LevelName.text = level.resource_name
-	for i in range(level.LevelSize.y):
-		for j in range(level.LevelSize.x):
-			var position := Vector2(i, j)
+	for y in range(level.LevelSize.y):
+		for x in range(level.LevelSize.x):
+			var position := Vector2(x, y)
 			var new_line_edit := LineEdit.new()
 			new_line_edit.align = new_line_edit.ALIGN_CENTER
 			new_line_edit.placeholder_text = position as String

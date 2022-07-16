@@ -89,8 +89,9 @@ func _on_Player_moved(direction: Vector3) -> void:
 func run_tile_effect() -> void:
 	var tile = positions[player_grid_position]
 	var facing_down_direction: Position3D = get_facing_down_direction()
+	var current_face_value = player.face_values[facing_down_direction.name]
 
-	if tile.value == tile.Type.UNGLUE:
+	if current_face_value > 0 and tile.value == tile.Type.UNGLUE:
 		tile.value = 0
 		tile.get_node("Thrashcan").hide()
 		player.clear_face(facing_down_direction.name)
@@ -108,8 +109,6 @@ func run_tile_effect() -> void:
 		facing_down_direction.add_child(child)
 
 		child.global_transform = g_transform
-
-	var current_face_value = player.face_values[facing_down_direction.name]
 
 	player.face_values[facing_down_direction.name] = calculate_facing_points(current_face_value, tile, facing_down_direction)
 

@@ -13,7 +13,7 @@
 
 [node name="Main" type="Spatial"]
 script = ExtResource( 4 )
-levels = [ "res://src/levels/level1.tres", "res://src/levels/level2.tres", "res://src/levels/level3.tres", "res://src/levels/level4.tres", "res://src/levels/level5.tres", "res://src/levels/level6.tres", "res://src/levels/level7.tres", "res://src/levels/level8.tres" ]
+levels = [ "res://src/levels/test.tres", "res://src/levels/level1.tres", "res://src/levels/level2.tres", "res://src/levels/level3.tres", "res://src/levels/level4.tres", "res://src/levels/level5.tres", "res://src/levels/level6.tres", "res://src/levels/level8.tres", "res://src/levels/level9.tres" ]
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
