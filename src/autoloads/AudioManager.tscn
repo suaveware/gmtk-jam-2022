@@ -1,22 +1,41 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://assets/sound/buildup.wav" type="AudioStream" id=1]
 [ext_resource path="res://src/autoloads/AudioManager.gd" type="Script" id=2]
 [ext_resource path="res://assets/sound/loopTwo.wav" type="AudioStream" id=3]
 [ext_resource path="res://assets/sound/win.wav" type="AudioStream" id=4]
 [ext_resource path="res://assets/sound/loose.wav" type="AudioStream" id=5]
+[ext_resource path="res://assets/sound/roll.wav" type="AudioStream" id=6]
+[ext_resource path="res://assets/sound/fullroll.wav" type="AudioStream" id=7]
+[ext_resource path="res://assets/sound/crank2.wav" type="AudioStream" id=8]
 
 [node name="AudioManager" type="Node"]
 script = ExtResource( 2 )
 
 [node name="MenuLoop" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 1 )
+volume_db = -7.0
 
 [node name="GameLoop" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 3 )
+volume_db = -7.0
 
 [node name="Victory" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 4 )
+volume_db = -7.0
 
 [node name="Lost" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 5 )
+volume_db = -7.0
+
+[node name="Roll" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 6 )
+volume_db = 2.622
+
+[node name="FullRoll" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 7 )
+volume_db = 2.622
+
+[node name="CameraRotate" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 8 )
+volume_db = -5.0

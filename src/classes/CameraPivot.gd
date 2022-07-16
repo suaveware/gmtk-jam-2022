@@ -24,6 +24,7 @@ func rotate_right() -> void:
 		$Tween.EASE_IN_OUT
 	)
 	$Tween.start()
+	AudioManager.sfx("CameraRotate")
 	emit_signal("rotated", "right")
 	pass
 
@@ -41,6 +42,7 @@ func rotate_left() -> void:
 		$Tween.EASE_IN_OUT
 	)
 	$Tween.start()
+	AudioManager.sfx("CameraRotate")
 	emit_signal("rotated", "left")
 	pass
 

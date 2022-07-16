@@ -45,6 +45,7 @@ func roll(dir):
 
 	mesh.global_transform = mesh_global_transform
 
+	AudioManager.sfx("Roll")
 	emit_signal("moved", dir)
 
 func has_good_faces() -> bool:
