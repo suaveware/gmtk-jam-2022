@@ -41,6 +41,13 @@ W, A, S, D to roll"
 [node name="DiceHud" parent="CanvasLayer/Gui" instance=ExtResource( 6 )]
 player_path = NodePath("../../../Player")
 
+[node name="TutorialText" type="Label" parent="CanvasLayer/Gui"]
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = -192.0
+align = 1
+
 [node name="Grid" type="Spatial" parent="."]
 script = ExtResource( 2 )
 
