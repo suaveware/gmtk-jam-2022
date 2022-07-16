@@ -2,12 +2,12 @@ extends Spatial
 
 enum { PRE_GAME, IN_PROGRESS, PLAYER_WON }
 
-signal game_started
+signal game_state_changed(new_state)
 
 onready var grid = get_node("Grid")
 
 var level = preload("res://src/levels/tutorial.tres")
-var game_state := PRE_GAME
+var game_state := PRE_GAME setget set_game_state
 
 var player_movements = [
 	{input = "roll_up", direction = Vector3.FORWARD},
@@ -49,10 +49,16 @@ func _on_CameraPivot_rotated(direction: String) -> void:
 
 
 func _on_Grid_player_won() -> void:
-	game_state = PLAYER_WON
+	self.game_state = PLAYER_WON
 	pass
 
 
 func _on_Tween_tween_all_completed() -> void:
-	game_state = IN_PROGRESS
+	self.game_state = IN_PROGRESS
 	pass
+
+
+func set_game_state(new_state: int) -> void:
+	game_state = new_state
+
+	emit_signal("game_state_changed", new_state)

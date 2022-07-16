@@ -158,5 +158,6 @@ func calculate_facing_points(current_face_value, tile, facing_down_direction) ->
 			return -1
 
 
-func _on_Main_game_started() -> void:
-	glue_balls_to_player()
+func _on_Main_game_state_changed(to: int) -> void:
+	if to == owner.IN_PROGRESS:
+		glue_balls_to_player()
