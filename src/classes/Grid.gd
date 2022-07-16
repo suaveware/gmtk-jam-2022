@@ -110,3 +110,16 @@ func calculate_facing_points(current_face_value, tile, facing_down_direction) ->
 					return -1
 		_:
 			return -1
+
+
+func player_can_roll(position: Vector3):
+	match(position):
+		Vector3.FORWARD:
+			return player_grid_position.y > 0
+		Vector3.BACK:
+			return player_grid_position.y < height-1
+		Vector3.RIGHT:
+			return player_grid_position.x < width-1
+		Vector3.LEFT:
+			return player_grid_position.x > 0
+	return false
