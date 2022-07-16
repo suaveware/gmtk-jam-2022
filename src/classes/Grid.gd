@@ -26,6 +26,7 @@ func _ready() -> void:
 
 
 func load_level(level = null):
+	owner.game_state = owner.PRE_GAME
 	player.reset()
 	for child in get_children():
 		positions = {}
