@@ -64,7 +64,6 @@ func _on_CameraPivot_rotated(direction: String) -> void:
 func _on_Grid_player_won() -> void:
 	self.game_state = PLAYER_WON
 	AudioManager.play_between_current("Victory", true)
-	next_level()
 	pass
 
 
@@ -77,3 +76,8 @@ func set_game_state(new_state: int) -> void:
 	game_state = new_state
 
 	emit_signal("game_state_changed", new_state)
+
+
+func _on_NextLevelButton_pressed() -> void:
+	next_level()
+	pass
