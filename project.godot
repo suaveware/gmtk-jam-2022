@@ -21,7 +21,7 @@ _global_script_class_icons={
 [application]
 
 config/name="2022 Gtmk"
-run/main_scene="res://Main.tscn"
+run/main_scene="res://src/StartMenu/StartMenu.tscn"
 config/icon="res://icon.png"
 
 [display]

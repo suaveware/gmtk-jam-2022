@@ -2,8 +2,6 @@ extends Spatial
 
 signal player_won
 
-export var width := 6
-export var height := 6
 export var tile_size = 2
 
 var positions := {}
@@ -14,18 +12,10 @@ var tile = preload("res://src/Tile/Tile.tscn")
 onready var player_mesh := $"../Player/Pivot/Rotator/Mesh"
 onready var player = $"../Player"
 
-func _init() -> void:
-	for i in range(0, width):
-		for j in range(0, height):
-			positions[Vector2(i, j)] = {}
-
-func _ready() -> void:
-	translation.x -= width *  tile_size / 2 - tile_size / 2
-	translation.z -= width *  tile_size / 2 - tile_size / 2
-	pass
-
 
 func load_level(level = null):
+	var position_sum: = Vector3.ZERO
+
 	owner.game_state = owner.PRE_GAME
 	player.reset()
 	for child in get_children():
@@ -34,7 +24,14 @@ func load_level(level = null):
 			child.queue_free()
 
 	for tile in level.Tiles:
+		position_sum += tile
 		instantiate_tile(tile.x, tile.y, tile.z)
+
+	# Position camera in the center
+	var tiles_position_average: Vector3 = position_sum / level.Tiles.size()
+	translation.x -= tiles_position_average.x + 1
+	translation.z -= tiles_position_average.y + 1
+
 	player_grid_position = level.StartPosition
 	player.translation = Vector3(level.StartPosition.x* tile_size,15,level.StartPosition.y* tile_size) + translation
 	$Tween.interpolate_property(
@@ -49,6 +46,7 @@ func load_level(level = null):
 			for j in range(0, level.LevelSize.y):
 				if(!positions.get(Vector2(i, j))):
 					instantiate_tile(i, j, rand_range(0,7))
+
 	$Tween.start()
 
 func instantiate_tile(x: int, y: int, value: int):
