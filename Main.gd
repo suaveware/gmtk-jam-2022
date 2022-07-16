@@ -19,4 +19,4 @@ func _physics_process(_delta):
 	for movement in player_movements:
 		if Input.is_action_pressed(movement.input) and grid.player_can_roll(movement.direction):
 			$Player.roll(movement.direction)
-	
+
