@@ -11,7 +11,8 @@
 albedo_color = Color( 0.176471, 0.176471, 0.176471, 1 )
 
 [sub_resource type="Animation" id=5]
-resource_name = "tutorial2"
+resource_local_to_scene = true
+resource_name = "show_die"
 length = 9.0
 loop = true
 tracks/0/type = "value"
@@ -105,6 +106,7 @@ align = 1
 visible = false
 
 [node name="dice" type="MeshInstance" parent="1"]
+transform = Transform( -0.122728, 0.836163, 0.534574, 0.499695, 0.51745, -0.694658, -0.857463, 0.18187, -0.481332, 0, 0, 0 )
 mesh = ExtResource( 2 )
 material/0 = SubResource( 4 )
 

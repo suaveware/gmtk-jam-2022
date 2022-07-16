@@ -17,5 +17,5 @@ func _on_Main_game_state_changed(new_state) -> void:
 			$HBoxContainer.show()
 		owner.PLAYER_WON:
 			$NiceRoll.show()
-			$DiceHud.hide()
+#			$DiceHud.hide()
 			$HBoxContainer.hide()
