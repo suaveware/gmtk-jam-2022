@@ -5,8 +5,8 @@ export var level: Resource = Level.new()
 func _ready() -> void:
 	$VBoxContainer/GridContainer.columns = level.LevelSize.x
 	$VBoxContainer/HBoxContainer/LevelName.text = level.resource_name
-	for i in range(level.LevelSize.x):
-		for j in range(level.LevelSize.y):
+	for i in range(level.LevelSize.y):
+		for j in range(level.LevelSize.x):
 			var position := Vector2(i, j)
 			var new_line_edit := LineEdit.new()
 			new_line_edit.align = new_line_edit.ALIGN_CENTER
@@ -16,7 +16,7 @@ func _ready() -> void:
 			$VBoxContainer/GridContainer.add_child(new_line_edit)
 
 	for tile in level.Tiles:
-		var index: int = tile.x * level.LevelSize.x + tile.y
+		var index: int = tile.y * level.LevelSize.x + tile.x
 		var line_edit: LineEdit = $VBoxContainer/GridContainer.get_child(index)
 
 		line_edit.text = tile.z as String

@@ -1,6 +1,6 @@
 extends CSGBox
 
-const DOT_POSITIONS = [
+const DOT_POSITIONS = [[],
 	[Vector2(0, 0)],
 	[Vector2(-0.5, -0.5), Vector2(0.5, 0.5)],
 	[Vector2(-0.5, -0.5), Vector2(0, 0), Vector2(0.5, 0.5)],
@@ -12,7 +12,7 @@ const DOT_POSITIONS = [
 export var value: int
 
 func _ready():
-	var dot_positions = DOT_POSITIONS[value-1]
+	var dot_positions = DOT_POSITIONS[value]
 	var dot = $Dot
 	for i in range(len(dot_positions)):
 		var new_dot = dot.duplicate()
