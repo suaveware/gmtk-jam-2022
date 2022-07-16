@@ -16,6 +16,11 @@ anchor_bottom = 1.0
 theme = ExtResource( 3 )
 script = ExtResource( 4 )
 
+[node name="ColorRect" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0, 0.831373, 0.666667, 1 )
+
 [node name="GridContainer" type="GridContainer" parent="."]
 margin_left = 29.0
 margin_top = 283.0

@@ -42,6 +42,8 @@ func next_level() -> void:
 		level = load(levels[GlobalState.level_index])
 		grid.load_level(level)
 
+	AudioManager.play("GameLoop")
+
 
 func _on_CameraPivot_rotated(direction: String) -> void:
 	match direction:
@@ -76,3 +78,8 @@ func set_game_state(new_state: int) -> void:
 	game_state = new_state
 
 	emit_signal("game_state_changed", new_state)
+
+
+func _on_NextLevelButton_pressed() -> void:
+	next_level()
+	pass
