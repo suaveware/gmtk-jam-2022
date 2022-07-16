@@ -47,6 +47,17 @@ func roll(dir):
 
 	emit_signal("moved", dir)
 
+func has_good_faces() -> bool:
+	if face_values.Left + face_values.Right != 7:
+		return false
+
+	if face_values.Up + face_values.Down != 7:
+		return false
+
+	if face_values.Forward + face_values.Back != 7:
+		return false
+
+	return true
 
 func _on_Tween_tween_step(_object, _key, _elapsed, _value):
 	pivot.transform = pivot.transform.orthonormalized()

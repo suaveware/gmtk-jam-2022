@@ -18,6 +18,8 @@ func _init() -> void:
 			positions[Vector2(i, j)] = {}
 
 func _ready() -> void:
+	translation.x -= width *  tile_size / 2 - tile_size / 2
+	translation.z -= width *  tile_size / 2 - tile_size / 2
 	pass
 
 
@@ -26,7 +28,7 @@ func load_level(level: Level = null):
 		for tile in level.Tiles:
 			instantiate_tile(tile.x, tile.y, tile.z)
 		player_grid_position = level.StartPosition
-		player.translation = Vector3(level.StartPosition.x* tile_size,1,level.StartPosition.y* tile_size)
+		player.translation = Vector3(level.StartPosition.x* tile_size,1,level.StartPosition.y* tile_size) + translation
 	for i in range(0, width):
 		for j in range(0, height):
 			if(!positions[Vector2(i, j)]):
@@ -37,7 +39,7 @@ func load_level(level: Level = null):
 func instantiate_tile(x: int, y: int, value: int):
 	var new_tile = tile.instance()
 	new_tile.value = value
-	get_parent().call_deferred("add_child", new_tile)
+	call_deferred("add_child", new_tile)
 	new_tile.translation = (Vector3(x, 0, y) * tile_size)
 	positions[Vector2(x, y)] = new_tile
 
