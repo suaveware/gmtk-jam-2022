@@ -29,7 +29,7 @@ func roll(dir):
 		null,
 		pivot.transform.basis.rotated(axis, PI/2),
 		duration,
-		Tween.TRANS_CIRC,
+		Tween.TRANS_CUBIC,
 		Tween.EASE_IN
 	)
 
