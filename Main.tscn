@@ -29,10 +29,9 @@ margin_right = 40.0
 margin_bottom = 40.0
 
 [node name="Label" type="Label" parent="CanvasLayer/Gui/HBoxContainer"]
-visible = false
-margin_right = 102.0
+margin_right = 263.0
 margin_bottom = 51.0
-text = "Victory"
+text = "Press \"R\" to reset"
 
 [node name="DiceHud" parent="CanvasLayer/Gui" instance=ExtResource( 6 )]
 player_path = NodePath("../../../Player")
