@@ -2,6 +2,8 @@ extends Spatial
 
 signal moved
 
+var face_values = { Left = 0, Right = 0, Forward = 0, Back = 0, Up = 0, Down = 0 }
+
 export var duration = 0.5
 
 onready var pivot = $Pivot

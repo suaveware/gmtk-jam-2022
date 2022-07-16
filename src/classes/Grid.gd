@@ -26,7 +26,7 @@ func load_level(level: Level = null):
 		for tile in level.Tiles:
 			instantiate_tile(tile.x, tile.y, tile.z)
 		player_grid_position = level.StartPosition
-		player.translation = Vector3(level.StartPosition.x* tile_size,1,level.StartPosition.y* tile_size) 
+		player.translation = Vector3(level.StartPosition.x* tile_size,1,level.StartPosition.y* tile_size)
 	for i in range(0, width):
 		for j in range(0, height):
 			if(!positions[Vector2(i, j)]):
@@ -64,6 +64,10 @@ func _on_Player_moved(direction: Vector3) -> void:
 
 		child.global_transform = g
 
+	var current_face_value = player.face_values[facing_down_direction.name]
+
+	player.face_values[facing_down_direction.name] = calculate_facing_points(current_face_value, tile, facing_down_direction)
+
 
 func get_facing_down_direction() -> Position3D:
 	var lowest: Position3D = null
@@ -80,3 +84,29 @@ func get_facing_down_direction() -> Position3D:
 
 	return lowest
 
+func calculate_facing_points(current_face_value, tile, facing_down_direction) -> int:
+	match current_face_value:
+		0:
+			return tile.value
+		1:
+			match tile.value:
+				2:
+					return 3
+				4:
+					return 5
+				_:
+					return -1
+		2:
+			match tile.value:
+				1:
+					return 3
+				_:
+					return -1
+		4:
+			match tile.value:
+				1:
+					return 5
+				_:
+					return -1
+		_:
+			return -1
