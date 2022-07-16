@@ -80,21 +80,27 @@ func _on_Player_moved(direction: Vector3) -> void:
 		Vector3.LEFT:
 			player_grid_position.x -= 1
 
-	glue_balls_to_player()
+	run_tile_effect()
 
 	if player.has_good_faces():
 		emit_signal("player_won")
 
 
-func glue_balls_to_player() -> void:
+func run_tile_effect() -> void:
 	var tile = positions[player_grid_position]
 	var facing_down_direction: Position3D = get_facing_down_direction()
+
+	if tile.value == tile.Type.UNGLUE:
+		tile.value = 0
+		tile.get_node("Thrashcan").hide()
+		player.clear_face(facing_down_direction.name)
+		return
+
 	var dots = tile.get_node('dots')
 	var is_empty = dots.get_children().size() == 0
 
 	if is_empty:
 		return
-
 
 	for child in dots.get_children():
 		var g_transform = child.global_transform
@@ -165,4 +171,4 @@ func calculate_facing_points(current_face_value, tile, facing_down_direction) ->
 
 func _on_Main_game_state_changed(to: int) -> void:
 	if to == owner.IN_PROGRESS:
-		glue_balls_to_player()
+		run_tile_effect()

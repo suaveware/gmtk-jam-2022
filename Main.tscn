@@ -13,7 +13,7 @@
 
 [node name="Main" type="Spatial"]
 script = ExtResource( 4 )
-levels = [ "res://src/levels/tutorial.tres", "res://src/levels/test.tres" ]
+levels = [ "res://src/levels/test.tres", "res://src/levels/tutorial.tres" ]
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 

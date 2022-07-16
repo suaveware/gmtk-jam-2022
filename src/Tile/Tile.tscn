@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://src/Tile/Tile.gd" type="Script" id=1]
+[ext_resource path="res://src/Tile/trashcan.png" type="Texture" id=2]
 
 [sub_resource type="SpatialMaterial" id=2]
 albedo_color = Color( 0.176471, 0.176471, 0.176471, 1 )
@@ -20,3 +21,9 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.75, 0 )
 width = 1.9
 height = 0.5
 depth = 1.9
+
+[node name="Thrashcan" type="Sprite3D" parent="."]
+transform = Transform( 3, 0, 0, 0, -1.31134e-07, 1, 0, -3, -4.37114e-08, 0, 1.00484, 1.89308e-08 )
+visible = false
+modulate = Color( 0.945098, 0.886275, 0, 1 )
+texture = ExtResource( 2 )

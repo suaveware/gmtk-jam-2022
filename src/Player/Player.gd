@@ -73,5 +73,14 @@ func reset() -> void:
 			ball.queue_free()
 
 
+func clear_face(face_name: String) -> void:
+	var face: Position3D = mesh.get_node(face_name)
+
+	for child in face.get_children():
+		child.queue_free()
+
+	face_values[face_name] = 0
+
+
 func _on_Tween_tween_step(_object, _key, _elapsed, _value):
 	pivot.transform = pivot.transform.orthonormalized()
