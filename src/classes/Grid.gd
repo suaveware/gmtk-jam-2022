@@ -89,12 +89,12 @@ func _on_Player_moved(direction: Vector3) -> void:
 func glue_balls_to_player() -> void:
 	var tile = positions[player_grid_position]
 	var facing_down_direction: Position3D = get_facing_down_direction()
-	var is_empty = tile.get_children().size() == 0
+	var dots = tile.get_node('dots')
+	var is_empty = dots.get_children().size() == 0
 
 	if is_empty:
 		return
 
-	var dots = tile.get_node('dots')
 
 	for child in dots.get_children():
 		var g_transform = child.global_transform
