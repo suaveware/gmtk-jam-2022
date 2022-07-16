@@ -1,8 +1,10 @@
 [gd_resource type="Resource" load_steps=2 format=2]
 
-[ext_resource path="res://src/level.gd" type="Script" id=1]
+[ext_resource path="res://src/classes/level.gd" type="Script" id=1]
 
 [resource]
 script = ExtResource( 1 )
+LevelSize = Vector2( 6, 6 )
 Tiles = [ Vector3( 1, 0, 2 ), Vector3( 0, 1, 4 ), Vector3( 1, 1, 1 ), Vector3( 2, 1, 3 ), Vector3( 1, 2, 5 ), Vector3( 1, 3, 6 ) ]
 StartPosition = Vector2( 1, 1 )
+Offset = Vector2( 0, 0 )
