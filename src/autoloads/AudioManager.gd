@@ -16,6 +16,10 @@ func play(sound: String) -> void:
 	get_node(sound).play()
 
 
+func sfx(sound: String) -> void:
+	get_node(sound).play()
+
+
 func play_between_current(sound: String, restart_current: = false) -> void:
 	var bg_stream_player: AudioStreamPlayer = get_node(current_background)
 	var stream_player: AudioStreamPlayer = get_node(sound)

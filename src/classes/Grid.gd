@@ -34,13 +34,16 @@ func load_level(level = null):
 
 	player_grid_position = level.StartPosition
 	player.translation = Vector3(level.StartPosition.x* tile_size,15,level.StartPosition.y* tile_size) + translation
+
+	var player_fall_delay: = ((level.LevelSize.x + level.LevelSize.y) as float) / 20
 	$Tween.interpolate_property(
 		player,
 		'translation:y',
-		12, 1, 1,
+		12, 1, 0.65,
 		Tween.TRANS_BOUNCE,
 		Tween.EASE_OUT,
-		((level.LevelSize.x + level.LevelSize.y) as float) / 20)
+		player_fall_delay
+	)
 	if(level.shouldFillGrid):
 		for i in range(0, level.LevelSize.x):
 			for j in range(0, level.LevelSize.y):
@@ -48,6 +51,8 @@ func load_level(level = null):
 					instantiate_tile(i, j, rand_range(0,7))
 
 	$Tween.start()
+	yield(get_tree().create_timer(player_fall_delay + 0.3), "timeout")
+	AudioManager.sfx("FullRoll")
 
 func instantiate_tile(x: int, y: int, value: int):
 	var new_tile = tile.instance()
