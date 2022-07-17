@@ -12,13 +12,6 @@ var game_state := PRE_GAME setget set_game_state
 
 onready var level = load(levels[GlobalState.level_index])
 
-var player_movements = [
-	{input = "roll_up", direction = Vector3.FORWARD},
-	{input = "roll_right", direction = Vector3.RIGHT},
-	{input = "roll_down", direction = Vector3.BACK},
-	{input = "roll_left", direction = Vector3.LEFT}
-]
-
 func _ready() -> void:
 	AudioManager.play("GameLoop")
 	grid.load_level(level)
@@ -27,7 +20,7 @@ func _ready() -> void:
 		AudioManager.register_button(button)
 
 func _physics_process(_delta):
-	for movement in player_movements:
+	for movement in GlobalState.player_movements:
 		if game_state == IN_PROGRESS and Input.is_action_pressed(movement.input):
 			if grid.player_can_roll(movement.direction):
 				$Player.roll(movement.direction)
@@ -73,18 +66,18 @@ func next_level() -> void:
 func _on_CameraPivot_rotated(direction: String) -> void:
 	match direction:
 		"left":
-			var last_movement = player_movements[3].input
-			player_movements[3].input = player_movements[2].input
-			player_movements[2].input = player_movements[1].input
-			player_movements[1].input = player_movements[0].input
-			player_movements[0].input = last_movement
+			var last_movement = GlobalState.player_movements[3].input
+			GlobalState.player_movements[3].input = GlobalState.player_movements[2].input
+			GlobalState.player_movements[2].input = GlobalState.player_movements[1].input
+			GlobalState.player_movements[1].input = GlobalState.player_movements[0].input
+			GlobalState.player_movements[0].input = last_movement
 
 		"right":
-			var first_movement = player_movements[0].input
-			player_movements[0].input = player_movements[1].input
-			player_movements[1].input = player_movements[2].input
-			player_movements[2].input = player_movements[3].input
-			player_movements[3].input = first_movement
+			var first_movement = GlobalState.player_movements[0].input
+			GlobalState.player_movements[0].input = GlobalState.player_movements[1].input
+			GlobalState.player_movements[1].input = GlobalState.player_movements[2].input
+			GlobalState.player_movements[2].input = GlobalState.player_movements[3].input
+			GlobalState.player_movements[3].input = first_movement
 
 
 func _on_Grid_player_won() -> void:
