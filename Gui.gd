@@ -19,3 +19,7 @@ func _on_Main_game_state_changed(new_state) -> void:
 			$NiceRoll.show()
 #			$DiceHud.hide()
 			$HBoxContainer.hide()
+		owner.ENDED:
+			$NiceRoll.hide()
+			$DiceHud.hide()
+			$EndScreen.show()
