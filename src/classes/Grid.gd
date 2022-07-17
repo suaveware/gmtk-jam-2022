@@ -135,9 +135,6 @@ func get_facing_down_direction() -> Position3D:
 
 
 func player_can_roll(direction: Vector3):
-	if owner.game_state != owner.IN_PROGRESS:
-		return false
-
 	var target_grid_position = player_grid_position + Vector2(direction.x, direction.z)
 
 	return not not positions.get(target_grid_position)

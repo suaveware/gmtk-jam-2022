@@ -47,14 +47,14 @@ func roll(dir):
 
 	AudioManager.sfx("Roll")
 	emit_signal("moved", dir)
-	
+
 func try_roll(dir):
 	# Do nothing if we're currently rolling.
 	if tween.is_active():
 		return
 
 	AudioManager.sfx("Error")
-	
+
 	## Step 1: Offset the pivot
 	pivot.translate(dir)
 	rotator.translate(-dir)
@@ -74,7 +74,7 @@ func try_roll(dir):
 
 	tween.start()
 	yield(tween, "tween_all_completed")
-	
+
 	tween.interpolate_property(
 		pivot,
 		"transform:basis",

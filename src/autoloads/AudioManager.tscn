@@ -8,9 +8,9 @@
 [ext_resource path="res://assets/sound/roll.wav" type="AudioStream" id=6]
 [ext_resource path="res://assets/sound/fullroll.wav" type="AudioStream" id=7]
 [ext_resource path="res://assets/sound/crank2.wav" type="AudioStream" id=8]
-[ext_resource path="res://assets/sound/error.wav" type="AudioStream" id=11]
 [ext_resource path="res://assets/sound/select_001.ogg" type="AudioStream" id=9]
 [ext_resource path="res://assets/sound/click_001.ogg" type="AudioStream" id=10]
+[ext_resource path="res://assets/sound/error.wav" type="AudioStream" id=11]
 
 [node name="AudioManager" type="Node"]
 script = ExtResource( 2 )
@@ -52,6 +52,7 @@ bus = "SFX"
 
 [node name="Error" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 11 )
+
 [node name="ButtonHover" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 9 )
 volume_db = -20.0
