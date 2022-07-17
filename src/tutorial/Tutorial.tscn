@@ -361,6 +361,7 @@ autoplay = "tutorial1"
 anims/tutorial1 = SubResource( 3 )
 
 [node name="3" type="Spatial" parent="."]
+transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 0 )
 visible = false
 
 [node name="dice" type="MeshInstance" parent="3"]
