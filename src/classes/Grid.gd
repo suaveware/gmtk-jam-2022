@@ -138,6 +138,7 @@ func run_tile_effect() -> void:
 		child.global_transform = g_transform
 
 	player.face_values[facing_down_direction.name] = calculate_facing_points(current_face_value, tile, facing_down_direction)
+	tile.value = 0
 
 
 func get_facing_down_direction() -> Position3D:
@@ -155,21 +156,42 @@ func get_facing_down_direction() -> Position3D:
 
 	return lowest
 
+func get_value_at_direction(direction: Vector3) -> Position3D:
+	var closest: Position3D = null
+	var closest_distance: float = INF
+	var direction_global = player.translation + direction*2
+	for child in player_mesh.get_children():
+		var child_distance: float = child.to_global(child.translation).distance_to(direction_global)
+		if child_distance < closest_distance:
+			closest = child
+			closest_distance = child_distance
 
-func player_can_roll(direction: Vector3):
+	return closest
+
+# return true if player is allowed to move in specified direction
+func player_can_roll(direction: Vector3) -> bool:
 	var target_grid_position = player_grid_position + Vector2(direction.x, direction.z)
-
-	return not not positions.get(target_grid_position)
+	var tile = positions.get(target_grid_position)
+	
+	if(not tile):
+		return false
+	
+	var face_value = player.face_values[get_value_at_direction(direction).name]
+	
+	return calc_sum(face_value, tile.value) != -1
 
 
 func calculate_facing_points(current_face_value, tile, facing_down_direction) -> int:
-	if tile.value == 0:
-		return current_face_value
-	match current_face_value:
+	return calc_sum(current_face_value, tile.value)
+	
+func calc_sum(a, b) -> int:
+	if b == 0:
+		return a
+	match a:
 		0:
-			return tile.value
+			return b
 		1:
-			match tile.value:
+			match b:
 				2:
 					return 3
 				4:
@@ -177,20 +199,19 @@ func calculate_facing_points(current_face_value, tile, facing_down_direction) ->
 				_:
 					return -1
 		2:
-			match tile.value:
+			match b:
 				1:
 					return 3
 				_:
 					return -1
 		4:
-			match tile.value:
+			match b:
 				1:
 					return 5
 				_:
 					return -1
 		_:
 			return -1
-
 
 func _on_Main_game_state_changed(to: int) -> void:
 	if to == owner.IN_PROGRESS:
