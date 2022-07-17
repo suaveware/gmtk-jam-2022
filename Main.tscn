@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://src/Player/Player.gd" type="Script" id=1]
 [ext_resource path="res://src/classes/Grid.gd" type="Script" id=2]
@@ -10,6 +10,7 @@
 [ext_resource path="res://default_env.tres" type="Environment" id=8]
 [ext_resource path="res://assets/fonts/EduSABeginner-Bold.ttf" type="DynamicFontData" id=9]
 [ext_resource path="res://Gui.gd" type="Script" id=10]
+[ext_resource path="res://assets/fonts/EduSABeginner-Medium.ttf" type="DynamicFontData" id=11]
 
 [sub_resource type="DynamicFont" id=2]
 size = 130
@@ -17,11 +18,15 @@ outline_size = 5
 outline_color = Color( 0, 0, 0, 1 )
 font_data = ExtResource( 9 )
 
+[sub_resource type="DynamicFont" id=3]
+size = 64
+font_data = ExtResource( 11 )
+
 [sub_resource type="SpatialMaterial" id=1]
 
 [node name="Main" type="Spatial"]
 script = ExtResource( 4 )
-levels = [ "res://src/levels/level1.tres", "res://src/levels/level2.tres", "res://src/levels/level3.tres", "res://src/levels/level4.tres", "res://src/levels/level5.tres", "res://src/levels/level6.tres", "res://src/levels/level7.tres", "res://src/levels/level8.tres", "res://src/levels/level9.tres" ]
+levels = [ "res://src/levels/level2.tres", "res://src/levels/level3.tres", "res://src/levels/level4.tres", "res://src/levels/level5.tres", "res://src/levels/level6.tres", "res://src/levels/level7.tres", "res://src/levels/level8.tres", "res://src/levels/level9.tres", "res://src/levels/level1.tres" ]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = ExtResource( 8 )
@@ -50,6 +55,41 @@ W, A, S, D to roll"
 [node name="DiceHud" parent="CanvasLayer/Gui" instance=ExtResource( 6 )]
 visible = false
 player_path = NodePath("../../../Player")
+
+[node name="EndScreen" type="Label" parent="CanvasLayer/Gui"]
+visible = false
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -242.0
+margin_top = -437.0
+margin_right = 243.0
+margin_bottom = -272.0
+grow_horizontal = 2
+grow_vertical = 2
+custom_fonts/font = SubResource( 2 )
+text = "The end"
+align = 1
+
+[node name="MainMenuButton" type="Button" parent="CanvasLayer/Gui/EndScreen"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -171.5
+margin_top = 661.5
+margin_right = 190.5
+margin_bottom = 743.5
+text = "Main menu"
+
+[node name="Label" type="Label" parent="CanvasLayer/Gui/EndScreen"]
+margin_left = 33.0
+margin_top = 202.0
+margin_right = 490.0
+margin_bottom = 284.0
+custom_fonts/font = SubResource( 3 )
+text = "Thanks for playing!"
 
 [node name="NiceRoll" type="Label" parent="CanvasLayer/Gui"]
 visible = false
@@ -136,6 +176,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0 )
 
 [connection signal="game_state_changed" from="." to="CanvasLayer/Gui" method="_on_Main_game_state_changed"]
 [connection signal="game_state_changed" from="." to="Grid" method="_on_Main_game_state_changed"]
+[connection signal="pressed" from="CanvasLayer/Gui/EndScreen/MainMenuButton" to="." method="_on_MainMenuButton_pressed"]
 [connection signal="pressed" from="CanvasLayer/Gui/NiceRoll/NextLevelButton" to="." method="_on_NextLevelButton_pressed"]
 [connection signal="player_won" from="Grid" to="." method="_on_Grid_player_won"]
 [connection signal="tween_all_completed" from="Grid/Tween" to="." method="_on_Tween_tween_all_completed"]

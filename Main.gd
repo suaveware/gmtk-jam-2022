@@ -1,6 +1,6 @@
 extends Spatial
 
-enum { PRE_GAME, IN_PROGRESS, PLAYER_WON }
+enum { PRE_GAME, IN_PROGRESS, PLAYER_WON, ENDED }
 
 signal game_state_changed(new_state)
 
@@ -41,6 +41,8 @@ func next_level() -> void:
 		GlobalState.level_index += 1
 		level = load(levels[GlobalState.level_index])
 		grid.load_level(level)
+	else:
+		self.game_state = ENDED
 
 	AudioManager.play("GameLoop")
 
@@ -83,3 +85,6 @@ func set_game_state(new_state: int) -> void:
 func _on_NextLevelButton_pressed() -> void:
 	next_level()
 	pass
+
+func _on_MainMenuButton_pressed() -> void:
+	get_tree().change_scene("res://src/StartMenu/StartMenu.tscn")
