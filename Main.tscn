@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=2]
+[gd_scene load_steps=29 format=2]
 
 [ext_resource path="res://src/Player/Player.gd" type="Script" id=1]
 [ext_resource path="res://src/classes/Grid.gd" type="Script" id=2]
@@ -16,7 +16,7 @@
 [ext_resource path="res://assets/icons/audioOff.png" type="Texture" id=14]
 [ext_resource path="res://assets/fonts/EduSABeginner-Medium.ttf" type="DynamicFontData" id=15]
 [ext_resource path="res://assets/fonts/EduSABeginner-SemiBold.ttf" type="DynamicFontData" id=16]
-[ext_resource path="res://assets/icons/open.png" type="Texture" id=17]
+[ext_resource path="res://assets/icons/deviceTilt_left.png" type="Texture" id=17]
 [ext_resource path="res://assets/icons/return.png" type="Texture" id=18]
 [ext_resource path="res://assets/icons/exit.png" type="Texture" id=19]
 [ext_resource path="res://src/classes/TextureButton.tres.gd" type="Script" id=20]
@@ -44,6 +44,10 @@ func _on_Main_game_state_changed(new_state) -> void:
 [sub_resource type="DynamicFont" id=4]
 size = 94
 font_data = ExtResource( 16 )
+
+[sub_resource type="DynamicFont" id=9]
+size = 30
+font_data = ExtResource( 9 )
 
 [sub_resource type="DynamicFont" id=2]
 size = 130
@@ -148,7 +152,7 @@ B to return to menu"
 margin_right = 100.0
 margin_bottom = 100.0
 rect_pivot_offset = Vector2( 50, 50 )
-hint_tooltip = "B Back to menu"
+hint_tooltip = "Back to menu"
 texture_normal = ExtResource( 19 )
 flip_h = true
 script = ExtResource( 20 )
@@ -156,34 +160,89 @@ __meta__ = {
 "_editor_description_": "[B] Back to menu"
 }
 
+[node name="Label" type="Label" parent="CanvasLayer/Gui/HBoxContainer/BackToMenu"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -13.0
+margin_top = 47.0
+margin_right = 13.0
+margin_bottom = 98.0
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_fonts/font = SubResource( 9 )
+text = "B"
+align = 1
+
 [node name="Reset" type="TextureButton" parent="CanvasLayer/Gui/HBoxContainer"]
 margin_left = 98.0
 margin_right = 198.0
 margin_bottom = 100.0
 rect_pivot_offset = Vector2( 50, 50 )
-hint_tooltip = "[R] Retry"
-texture_normal = ExtResource( 17 )
-flip_h = true
+hint_tooltip = "Retry"
+texture_normal = ExtResource( 18 )
 script = ExtResource( 20 )
+
+[node name="Label" type="Label" parent="CanvasLayer/Gui/HBoxContainer/Reset"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -12.0
+margin_top = 47.0
+margin_right = 14.0
+margin_bottom = 98.0
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_fonts/font = SubResource( 9 )
+text = "R"
+align = 1
 
 [node name="RotateLeft" type="TextureButton" parent="CanvasLayer/Gui/HBoxContainer"]
 margin_left = 196.0
 margin_right = 296.0
 margin_bottom = 100.0
 rect_pivot_offset = Vector2( 50, 50 )
-hint_tooltip = "[Q] Rotate view left"
-texture_normal = ExtResource( 18 )
+hint_tooltip = "Rotate view left"
+texture_normal = ExtResource( 17 )
 script = ExtResource( 20 )
+
+[node name="Label" type="Label" parent="CanvasLayer/Gui/HBoxContainer/RotateLeft"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -14.0
+margin_top = 47.0
+margin_right = 12.0
+margin_bottom = 98.0
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_fonts/font = SubResource( 9 )
+text = "Q"
+align = 1
 
 [node name="RotateRight" type="TextureButton" parent="CanvasLayer/Gui/HBoxContainer"]
 margin_left = 294.0
 margin_right = 394.0
 margin_bottom = 100.0
 rect_pivot_offset = Vector2( 50, 50 )
-hint_tooltip = "[E] Rotate view right"
-texture_normal = ExtResource( 18 )
+hint_tooltip = "Rotate view right"
+texture_normal = ExtResource( 17 )
 flip_h = true
 script = ExtResource( 20 )
+
+[node name="Label" type="Label" parent="CanvasLayer/Gui/HBoxContainer/RotateRight"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -12.0
+margin_top = 47.0
+margin_right = 14.0
+margin_bottom = 98.0
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_fonts/font = SubResource( 9 )
+text = "E"
+align = 1
 
 [node name="DiceHud" parent="CanvasLayer/Gui" instance=ExtResource( 6 )]
 visible = false
