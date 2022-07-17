@@ -6,7 +6,6 @@ sky_horizon_color = Color( 1, 1, 1, 1 )
 ground_bottom_color = Color( 0, 0.831373, 0.666667, 1 )
 ground_horizon_color = Color( 1, 1, 1, 1 )
 ground_curve = 1e-05
-ground_energy = 0.8
 
 [resource]
 background_mode = 2
