@@ -43,8 +43,12 @@ func _input(event: InputEvent) -> void:
 			yield(grid, "level_deloaded")
 			get_tree().reload_current_scene()
 #			grid.load_level(level)
+
 		if event.scancode == KEY_B:
 			get_tree().change_scene("res://src/StartMenu/StartMenu.tscn")
+
+		if event.scancode == KEY_ENTER and game_state == PLAYER_WON:
+			next_level()
 
 
 func next_level() -> void:
@@ -78,13 +82,9 @@ func _on_CameraPivot_rotated(direction: String) -> void:
 func _on_Grid_player_won() -> void:
 	self.game_state = PLAYER_WON
 	AudioManager.play_between_current("Victory")
-	pass
-
 
 func _on_Tween_tween_all_completed() -> void:
 	self.game_state = IN_PROGRESS
-	pass
-
 
 func set_game_state(new_state: int) -> void:
 	game_state = new_state
@@ -94,7 +94,6 @@ func set_game_state(new_state: int) -> void:
 
 func _on_NextLevelButton_pressed() -> void:
 	next_level()
-	pass
 
 func _on_MusicToggle_toggled(button_pressed: bool) -> void:
 	AudioManager.toggle_music()
