@@ -14,6 +14,7 @@ func _input(event):
 	if event is InputEventKey or event is InputEventMouseButton:
 		if event.pressed:
 			next_slide()
+	
 
 func next_slide():
 	if(current_slide == slides.size() - 1):
