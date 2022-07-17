@@ -8,13 +8,19 @@ func _ready() -> void:
 	pass
 
 
+func _process(delta: float) -> void:
+	$LevelNumber.text = (GlobalState.level_index + 1) as String
+
+
 func _on_Main_game_state_changed(new_state) -> void:
 	match new_state:
 		owner.PRE_GAME:
+			$LevelNumber.hide()
 			$NiceRoll.hide()
 			$DiceHud.hide()
 			$HBoxContainer.hide()
 		owner.IN_PROGRESS:
+			$LevelNumber.show()
 			$DiceHud.show()
 			$HBoxContainer.show()
 		owner.PLAYER_WON:
@@ -22,6 +28,7 @@ func _on_Main_game_state_changed(new_state) -> void:
 #			$DiceHud.hide()
 			$HBoxContainer.hide()
 		owner.ENDED:
+			$LevelNumber.hide()
 			$NiceRoll.hide()
 			$DiceHud.hide()
 			$EndScreen.show()
