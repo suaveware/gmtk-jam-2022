@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=2]
+[gd_scene load_steps=34 format=2]
 
 [ext_resource path="res://src/Player/Player.gd" type="Script" id=1]
 [ext_resource path="res://src/classes/Grid.gd" type="Script" id=2]
@@ -64,6 +64,46 @@ font_data = ExtResource( 15 )
 viewport_path = NodePath("Viewport")
 
 [sub_resource type="SpatialMaterial" id=1]
+
+[sub_resource type="SpatialMaterial" id=10]
+
+[sub_resource type="SpatialMaterial" id=11]
+albedo_color = Color( 0.176471, 0.176471, 0.176471, 1 )
+
+[sub_resource type="Animation" id=12]
+resource_local_to_scene = true
+resource_name = "show_die"
+length = 9.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("dice:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 9 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0 ), Vector3( 360, 1080, 360 ) ]
+}
+
+[sub_resource type="Animation" id=13]
+resource_name = "victory"
+length = 4.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0 ), Vector3( 360, 1080, 0 ) ]
+}
 
 [node name="Main" type="Spatial"]
 script = ExtResource( 4 )
@@ -404,6 +444,119 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0 )
 [node name="Down" type="Position3D" parent="Player/Pivot/Rotator/Mesh"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0 )
 
+[node name="victory_dice" type="MeshInstance" parent="."]
+transform = Transform( -2.85252, -0.84882, 0.377681, 0, 1.21957, 2.74092, -0.929052, 2.60618, -1.15961, 8.5, 7.5, 9.5 )
+visible = false
+mesh = ExtResource( 7 )
+material/0 = SubResource( 10 )
+
+[node name="dots1" type="Spatial" parent="victory_dice"]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0 )
+
+[node name="Dot5" type="CSGSphere" parent="victory_dice/dots1"]
+transform = Transform( 0.15, 0, 0, 0, 0.05, 0, 0, 0, 0.15, 0, 1, 0 )
+material = SubResource( 11 )
+
+[node name="dots2" type="Spatial" parent="victory_dice"]
+transform = Transform( 4.37114e-08, -3.82137e-15, 1, -8.74228e-08, -1, 0, 1, -8.74228e-08, -4.37114e-08, 0, 0, 0 )
+
+[node name="Dot3" type="CSGSphere" parent="victory_dice/dots2"]
+transform = Transform( 0.15, 0, 0, 0, 0.05, 0, 0, 0, 0.15, 0.5, 1, 0.5 )
+material = SubResource( 11 )
+
+[node name="Dot4" type="CSGSphere" parent="victory_dice/dots2"]
+transform = Transform( 0.15, 0, 0, 0, 0.05, 0, 0, 0, 0.15, -0.5, 1, -0.5 )
+material = SubResource( 11 )
+
+[node name="dots3" type="Spatial" parent="victory_dice"]
+transform = Transform( -4.37114e-08, 1, 0, 4.37114e-08, 1.91069e-15, 1, 1, 4.37114e-08, -4.37114e-08, 0, 0, 0 )
+
+[node name="Dot2" type="CSGSphere" parent="victory_dice/dots3"]
+transform = Transform( 0.15, 0, 0, 0, 0.05, 0, 0, 0, 0.15, 0, 1, 0 )
+material = SubResource( 11 )
+
+[node name="Dot3" type="CSGSphere" parent="victory_dice/dots3"]
+transform = Transform( 0.15, 0, 0, 0, 0.05, 0, 0, 0, 0.15, 0.5, 1, 0.5 )
+material = SubResource( 11 )
+
+[node name="Dot4" type="CSGSphere" parent="victory_dice/dots3"]
+transform = Transform( 0.15, 0, 0, 0, 0.05, 0, 0, 0, 0.15, -0.5, 1, -0.5 )
+material = SubResource( 11 )
+
+[node name="dots4" type="Spatial" parent="victory_dice"]
+transform = Transform( -4.37114e-08, -1, -4.37114e-08, 0, -4.37114e-08, 1, -1, 4.37114e-08, 1.91069e-15, 0, 0, 0 )
+
+[node name="Dot1" type="CSGSphere" parent="victory_dice/dots4"]
+transform = Transform( 0.15, 0, 0, 8.88178e-16, 0.05, 8.88178e-16, 0, 4.17594e-24, 0.15, -0.5, 1, 0.5 )
+material = SubResource( 11 )
+
+[node name="Dot2" type="CSGSphere" parent="victory_dice/dots4"]
+transform = Transform( 0.15, 0, 0, 0, 0.05, 0, 0, 0, 0.15, 0.5, 1, -0.5 )
+material = SubResource( 11 )
+
+[node name="Dot3" type="CSGSphere" parent="victory_dice/dots4"]
+transform = Transform( 0.15, 0, 0, 0, 0.05, 0, 0, 0, 0.15, 0.5, 1, 0.5 )
+material = SubResource( 11 )
+
+[node name="Dot4" type="CSGSphere" parent="victory_dice/dots4"]
+transform = Transform( 0.15, 0, 0, 0, 0.05, 0, 0, 0, 0.15, -0.5, 1, -0.5 )
+material = SubResource( 11 )
+
+[node name="dots5" type="Spatial" parent="victory_dice"]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0 )
+
+[node name="Dot1" type="CSGSphere" parent="victory_dice/dots5"]
+transform = Transform( 0.15, 0, 0, 8.88178e-16, 0.05, 8.88178e-16, 0, 4.17594e-24, 0.15, -0.5, 1, 0.5 )
+material = SubResource( 11 )
+
+[node name="Dot2" type="CSGSphere" parent="victory_dice/dots5"]
+transform = Transform( 0.15, 0, 0, 0, 0.05, 0, 0, 0, 0.15, 0.5, 1, -0.5 )
+material = SubResource( 11 )
+
+[node name="Dot3" type="CSGSphere" parent="victory_dice/dots5"]
+transform = Transform( 0.15, 0, 0, 0, 0.05, 0, 0, 0, 0.15, 0.5, 1, 0.5 )
+material = SubResource( 11 )
+
+[node name="Dot4" type="CSGSphere" parent="victory_dice/dots5"]
+transform = Transform( 0.15, 0, 0, 0, 0.05, 0, 0, 0, 0.15, -0.5, 1, -0.5 )
+material = SubResource( 11 )
+
+[node name="Dot5" type="CSGSphere" parent="victory_dice/dots5"]
+transform = Transform( 0.15, 0, 0, 0, 0.05, 0, 0, 0, 0.15, 0, 1, 0 )
+material = SubResource( 11 )
+
+[node name="dots6" type="Spatial" parent="victory_dice"]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0 )
+
+[node name="Dot1" type="CSGSphere" parent="victory_dice/dots6"]
+transform = Transform( 0.15, 0, 0, 8.88178e-16, 0.05, 8.88178e-16, 0, 4.17594e-24, 0.15, -0.5, 1, 0.5 )
+material = SubResource( 11 )
+
+[node name="Dot2" type="CSGSphere" parent="victory_dice/dots6"]
+transform = Transform( 0.15, 0, 0, 0, 0.05, 0, 0, 0, 0.15, 0.5, 1, -0.5 )
+material = SubResource( 11 )
+
+[node name="Dot3" type="CSGSphere" parent="victory_dice/dots6"]
+transform = Transform( 0.15, 0, 0, 0, 0.05, 0, 0, 0, 0.15, 0.5, 1, 0.5 )
+material = SubResource( 11 )
+
+[node name="Dot4" type="CSGSphere" parent="victory_dice/dots6"]
+transform = Transform( 0.15, 0, 0, 0, 0.05, 0, 0, 0, 0.15, -0.5, 1, -0.5 )
+material = SubResource( 11 )
+
+[node name="Dot5" type="CSGSphere" parent="victory_dice/dots6"]
+transform = Transform( 0.15, 0, 2.64698e-23, 2.66454e-15, 0.05, 2.66454e-15, -2.64698e-23, 4.17594e-24, 0.15, -0.5, 1, 0 )
+material = SubResource( 11 )
+
+[node name="Dot6" type="CSGSphere" parent="victory_dice/dots6"]
+transform = Transform( 0.15, 0, 2.64698e-23, 2.66454e-15, 0.05, 2.66454e-15, -2.64698e-23, 4.17594e-24, 0.15, 0.5, 1, 0 )
+material = SubResource( 11 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="victory_dice"]
+autoplay = "victory"
+anims/tutorial2 = SubResource( 12 )
+anims/victory = SubResource( 13 )
+
 [connection signal="game_state_changed" from="." to="Viewport/Label" method="_on_Main_game_state_changed"]
 [connection signal="game_state_changed" from="." to="CanvasLayer/Gui" method="_on_Main_game_state_changed"]
 [connection signal="game_state_changed" from="." to="Grid" method="_on_Main_game_state_changed"]
@@ -415,6 +568,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0 )
 [connection signal="pressed" from="CanvasLayer/Gui/HBoxContainer/RotateRight" to="CanvasLayer/Gui" method="_on_RotateRight_pressed"]
 [connection signal="pressed" from="CanvasLayer/Gui/EndScreen/MainMenuButton" to="." method="_on_MainMenuButton_pressed"]
 [connection signal="pressed" from="CanvasLayer/Gui/NiceRoll/NextLevelButton" to="." method="_on_NextLevelButton_pressed"]
+[connection signal="level_loaded" from="Grid" to="." method="_on_level_loaded"]
 [connection signal="player_won" from="Grid" to="." method="_on_Grid_player_won"]
 [connection signal="tween_all_completed" from="Grid/Tween" to="." method="_on_Tween_tween_all_completed"]
 [connection signal="rotated" from="CameraPivot" to="." method="_on_CameraPivot_rotated"]

@@ -83,6 +83,12 @@ func _on_CameraPivot_rotated(direction: String) -> void:
 func _on_Grid_player_won() -> void:
 	self.game_state = PLAYER_WON
 	AudioManager.play_between_current("Victory")
+	$Player.visible = false
+	$victory_dice.visible = true
+	
+func _on_level_loaded() -> void:
+	$Player.visible = true
+	$victory_dice.visible = false
 
 func _on_Tween_tween_all_completed() -> void:
 	self.game_state = IN_PROGRESS
