@@ -66,7 +66,7 @@ func deload_level():
 			tile,
 			'translation:y',
 			0, -30, 0.5,
-			Tween.TRANS_Back,
+			Tween.TRANS_BACK,
 			Tween.EASE_IN,
 			((pos.x + pos.y) as float) / 20)
 	$Tween.interpolate_property(
@@ -179,7 +179,7 @@ func player_can_roll(direction: Vector3) -> bool:
 		return false
 	
 	var face_value = player.face_values[get_value_at_direction(direction).name]
-	
+	print(calc_sum(face_value, tile.value))
 	return calc_sum(face_value, tile.value) != -1
 
 
@@ -189,6 +189,8 @@ func calculate_facing_points(current_face_value, tile, facing_down_direction) ->
 func calc_sum(a, b) -> int:
 	if b == 0:
 		return a
+	if b == 7:
+		return 0
 	match a:
 		0:
 			return b
