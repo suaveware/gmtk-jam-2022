@@ -37,4 +37,18 @@ func play_between_current(sound: String, restart_current: = false) -> void:
 		bg_stream_player.seek(position)
 
 
+func toggle_music() -> void:
+	AudioServer.set_bus_mute(1, not AudioServer.is_bus_mute(1))
+
+
+func toggle_sound() -> void:
+	AudioServer.set_bus_mute(0, not AudioServer.is_bus_mute(0))
+
+
+func _input(event: InputEvent) -> void:
+	if event is InputEventKey and event.pressed:
+		if event.scancode == KEY_M:
+			AudioServer.set_bus_mute(0, not AudioServer.is_bus_mute(0))
+
+
 

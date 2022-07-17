@@ -34,6 +34,8 @@ func _input(event: InputEvent) -> void:
 		if event.scancode == KEY_R:
 			AudioManager.play_between_current("Lost")
 			grid.load_level(level)
+		if event.scancode == KEY_B:
+			get_tree().change_scene("res://src/StartMenu/StartMenu.tscn")
 
 
 func next_level() -> void:
@@ -82,3 +84,11 @@ func set_game_state(new_state: int) -> void:
 func _on_NextLevelButton_pressed() -> void:
 	next_level()
 	pass
+
+
+func _on_MusicToggle_toggled(button_pressed: bool) -> void:
+	AudioManager.toggle_music()
+
+
+func _on_SoundToggle_toggled(button_pressed: bool) -> void:
+	AudioManager.toggle_sound()

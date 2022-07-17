@@ -15,27 +15,34 @@ script = ExtResource( 2 )
 [node name="MenuLoop" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 1 )
 volume_db = -7.0
+bus = "Music"
 
 [node name="GameLoop" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 3 )
 volume_db = -7.0
+bus = "Music"
 
 [node name="Victory" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 4 )
 volume_db = -7.0
+bus = "SFX"
 
 [node name="Lost" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 5 )
 volume_db = -7.0
+bus = "SFX"
 
 [node name="Roll" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 6 )
 volume_db = 2.622
+bus = "SFX"
 
 [node name="FullRoll" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 7 )
 volume_db = 2.622
+bus = "SFX"
 
 [node name="CameraRotate" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 8 )
 volume_db = -5.0
+bus = "SFX"
