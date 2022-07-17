@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/rewind.png-f26a024ac2475dd9cabc0fe0e5c90ea2.stex"
+path="res://.import/fightJoy_25.png-91743e4ffcd76a4d2b0b4538f87dac4d.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/rewind.png"
-dest_files=[ "res://.import/rewind.png-f26a024ac2475dd9cabc0fe0e5c90ea2.stex" ]
+source_file="res://assets/icons/fightJoy_25.png"
+dest_files=[ "res://.import/fightJoy_25.png-91743e4ffcd76a4d2b0b4538f87dac4d.stex" ]
 
 [params]
 
