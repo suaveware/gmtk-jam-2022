@@ -21,12 +21,14 @@ func _on_button_pressed() -> void:
 
 
 func play(sound: String) -> void:
+	for child in get_children():
+		if child.name != sound:
+			child.stop()
+
 	if(current_background == sound):
 		return
-	current_background = sound
 
-	for child in get_children():
-		child.stop()
+	current_background = sound
 
 	get_node(sound).play()
 
@@ -44,10 +46,11 @@ func play_between_current(sound: String, restart_current: = false) -> void:
 	stream_player.play()
 
 	yield(stream_player, "finished")
-	bg_stream_player.play()
+	if current_background == bg_stream_player.name:
+		bg_stream_player.play()
 
-	if not restart_current:
-		bg_stream_player.seek(position)
+		if not restart_current:
+			bg_stream_player.seek(position)
 
 
 func toggle_music() -> void:
