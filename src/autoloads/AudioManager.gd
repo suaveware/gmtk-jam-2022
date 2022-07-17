@@ -2,9 +2,27 @@ extends Node
 
 
 var current_background: String
+var buttons: = []
 
 func _ready() -> void:
+#	for button in get_tree().get_nodes_in_group("button"):
+#		register_button(button)
 	pass
+
+
+func register_button(button: Button) -> void:
+	if not button: return
+
+	button.connect("mouse_entered", self, "_on_button_hover")
+	button.connect("pressed", self, "_on_button_pressed")
+
+
+func _on_button_hover() -> void:
+	sfx("ButtonHover")
+
+
+func _on_button_pressed() -> void:
+	sfx("ButtonClick")
 
 
 func play(sound: String) -> void:

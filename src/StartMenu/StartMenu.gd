@@ -2,6 +2,9 @@ extends Control
 
 func _ready() -> void:
 	AudioManager.play("MenuLoop")
+
+	for button in get_tree().get_nodes_in_group("button"):
+		AudioManager.register_button(button)
 	pass
 
 

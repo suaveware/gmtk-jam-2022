@@ -40,6 +40,7 @@ tracks/0/keys = {
 size = 120
 outline_size = 6
 outline_color = Color( 0, 0, 0, 1 )
+use_filter = true
 font_data = ExtResource( 3 )
 
 [node name="StartMenu" type="Control"]
@@ -89,20 +90,20 @@ grow_horizontal = 2
 grow_vertical = 2
 custom_constants/separation = 20
 
-[node name="StartButton" type="Button" parent="VBoxContainer"]
+[node name="StartButton" type="Button" parent="VBoxContainer" groups=["button"]]
 margin_right = 484.0
 margin_bottom = 99.23
 rect_min_size = Vector2( 0, 99.23 )
 text = "Start game"
 
-[node name="LevelsButton" type="Button" parent="VBoxContainer"]
+[node name="LevelsButton" type="Button" parent="VBoxContainer" groups=["button"]]
 margin_top = 119.0
 margin_right = 484.0
 margin_bottom = 218.23
 rect_min_size = Vector2( 0, 99.23 )
 text = "Levels"
 
-[node name="QuitButton" type="Button" parent="VBoxContainer"]
+[node name="QuitButton" type="Button" parent="VBoxContainer" groups=["button"]]
 margin_top = 238.0
 margin_right = 484.0
 margin_bottom = 337.23

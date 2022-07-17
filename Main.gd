@@ -1,6 +1,6 @@
 extends Spatial
 
-enum { PRE_GAME, IN_PROGRESS, PLAYER_WON }
+enum { PRE_GAME, IN_PROGRESS, PLAYER_WON, ENDED }
 
 signal game_state_changed(new_state)
 
@@ -23,6 +23,9 @@ func _ready() -> void:
 	AudioManager.play("GameLoop")
 	grid.load_level(level)
 
+	for button in get_tree().get_nodes_in_group("button"):
+		AudioManager.register_button(button)
+
 func _physics_process(_delta):
 	for movement in player_movements:
 		if Input.is_action_pressed(movement.input) and grid.player_can_roll(movement.direction):
@@ -43,6 +46,8 @@ func next_level() -> void:
 		GlobalState.level_index += 1
 		level = load(levels[GlobalState.level_index])
 		grid.load_level(level)
+	else:
+		self.game_state = ENDED
 
 	AudioManager.play("GameLoop")
 
@@ -85,10 +90,12 @@ func _on_NextLevelButton_pressed() -> void:
 	next_level()
 	pass
 
-
 func _on_MusicToggle_toggled(button_pressed: bool) -> void:
 	AudioManager.toggle_music()
 
 
 func _on_SoundToggle_toggled(button_pressed: bool) -> void:
 	AudioManager.toggle_sound()
+
+func _on_MainMenuButton_pressed() -> void:
+	get_tree().change_scene("res://src/StartMenu/StartMenu.tscn")
