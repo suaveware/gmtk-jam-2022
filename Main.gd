@@ -38,17 +38,25 @@ func _physics_process(_delta):
 func _input(event: InputEvent) -> void:
 	if event is InputEventKey and event.pressed:
 		if event.scancode == KEY_R:
-			AudioManager.play_between_current("Lost")
-			grid.deload_level()
-			yield(grid, "level_deloaded")
-			get_tree().reload_current_scene()
-#			grid.load_level(level)
+			reset_level()
 
 		if event.scancode == KEY_B:
-			get_tree().change_scene("res://src/StartMenu/StartMenu.tscn")
+			back_to_menu()
 
 		if event.scancode == KEY_ENTER and game_state == PLAYER_WON:
 			next_level()
+
+
+func reset_level() -> void:
+	AudioManager.play_between_current("Lost")
+	grid.deload_level()
+	yield(grid, "level_deloaded")
+	get_tree().reload_current_scene()
+	pass
+
+
+func back_to_menu() -> void:
+	get_tree().change_scene("res://src/StartMenu/StartMenu.tscn")
 
 
 func next_level() -> void:
