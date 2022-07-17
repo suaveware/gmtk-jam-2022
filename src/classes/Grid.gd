@@ -64,7 +64,7 @@ func deload_level():
 			tile,
 			'translation:y',
 			0, -30, 0.5,
-			Tween.TRANS_CUBIC,
+			Tween.TRANS_BACK,
 			Tween.EASE_IN,
 			((pos.x + pos.y) as float) / 20)
 	$Tween.interpolate_property(
