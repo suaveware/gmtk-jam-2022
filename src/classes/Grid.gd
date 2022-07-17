@@ -76,7 +76,7 @@ func deload_level():
 	)
 	$Tween.start()
 	yield($Tween, "tween_all_completed")
-	emit_signal("level_deloaded")	
+	emit_signal("level_deloaded")
 
 func instantiate_tile(x: int, y: int, value: int):
 	var new_tile = tile.instance()

@@ -58,8 +58,5 @@ func rotate_left() -> void:
 	$Tween.start()
 	AudioManager.sfx("CameraRotate")
 	emit_signal("rotated", "left")
-
-	yield($Tween, "tween_all_completed")
-	GlobalState.camera_rotation_y = rotation.y
 	pass
 
