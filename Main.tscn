@@ -28,7 +28,7 @@ script/source = "extends Label
 func _on_Main_game_state_changed(new_state) -> void:
 	match new_state:
 		owner.PRE_GAME:
-			hide()
+			show()
 		owner.IN_PROGRESS:
 			show()
 		owner.PLAYER_WON:
@@ -83,20 +83,23 @@ theme = ExtResource( 5 )
 script = ExtResource( 10 )
 
 [node name="LevelNumber" type="Label" parent="CanvasLayer/Gui"]
-margin_left = 267.0
-margin_top = 931.0
-margin_right = 323.0
-margin_bottom = 1050.0
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -28.0
+margin_top = 38.0
+margin_right = 28.0
+margin_bottom = 157.0
 grow_vertical = 0
 custom_fonts/font = SubResource( 4 )
 text = "0"
 
 [node name="Prefix" type="Label" parent="CanvasLayer/Gui/LevelNumber"]
-margin_left = -233.0
+visible = false
+margin_left = -56.0
 margin_right = 9.0
 margin_bottom = 119.0
 custom_fonts/font = SubResource( 4 )
-text = "Level: "
+text = "L"
 
 [node name="VBoxContainer" type="HBoxContainer" parent="CanvasLayer/Gui"]
 anchor_top = 1.0
