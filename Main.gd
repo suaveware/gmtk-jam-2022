@@ -25,8 +25,11 @@ func _ready() -> void:
 
 func _physics_process(_delta):
 	for movement in player_movements:
-		if Input.is_action_pressed(movement.input) and grid.player_can_roll(movement.direction):
-			$Player.roll(movement.direction)
+		if Input.is_action_pressed(movement.input):
+			if grid.player_can_roll(movement.direction):
+				$Player.roll(movement.direction)
+			else:
+				$Player.try_roll(movement.direction)
 
 
 func _input(event: InputEvent) -> void:

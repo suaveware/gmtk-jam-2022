@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://assets/sound/buildup.wav" type="AudioStream" id=1]
 [ext_resource path="res://src/autoloads/AudioManager.gd" type="Script" id=2]
@@ -8,6 +8,7 @@
 [ext_resource path="res://assets/sound/roll.wav" type="AudioStream" id=6]
 [ext_resource path="res://assets/sound/fullroll.wav" type="AudioStream" id=7]
 [ext_resource path="res://assets/sound/crank2.wav" type="AudioStream" id=8]
+[ext_resource path="res://assets/sound/error.wav" type="AudioStream" id=9]
 
 [node name="AudioManager" type="Node"]
 script = ExtResource( 2 )
@@ -45,4 +46,8 @@ bus = "SFX"
 [node name="CameraRotate" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 8 )
 volume_db = -5.0
+bus = "SFX"
+
+[node name="Error" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 9 )
 bus = "SFX"

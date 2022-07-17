@@ -47,6 +47,54 @@ func roll(dir):
 
 	AudioManager.sfx("Roll")
 	emit_signal("moved", dir)
+	
+func try_roll(dir):
+	# Do nothing if we're currently rolling.
+	if tween.is_active():
+		return
+
+	AudioManager.sfx("Error")
+	
+	## Step 1: Offset the pivot
+	pivot.translate(dir)
+	rotator.translate(-dir)
+
+	## Step 2: Animate the rotation
+	var initial_rotation = pivot.transform.basis
+	var axis = dir.cross(Vector3.DOWN)
+	tween.interpolate_property(
+		pivot,
+		"transform:basis",
+		null,
+		pivot.transform.basis.rotated(axis, PI/12),
+		duration/2,
+		Tween.TRANS_CUBIC,
+		Tween.EASE_IN_OUT
+	)
+
+	tween.start()
+	yield(tween, "tween_all_completed")
+	
+	tween.interpolate_property(
+		pivot,
+		"transform:basis",
+		null,
+		initial_rotation,
+		duration/2,
+		Tween.TRANS_CUBIC,
+		Tween.EASE_IN_OUT
+	)
+
+	tween.start()
+	yield(tween, "tween_all_completed")
+
+	var mesh_global_transform = mesh.global_transform
+
+	## Step3: Finalize movement and reverse the offset
+	pivot.transform = Transform.IDENTITY
+	rotator.transform.origin = Vector3(0, 1, 0)
+
+	mesh.global_transform = mesh_global_transform
 
 func has_good_faces() -> bool:
 	if face_values.Left + face_values.Right != 7:
