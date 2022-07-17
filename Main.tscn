@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=2]
+[gd_scene load_steps=24 format=2]
 
 [ext_resource path="res://src/Player/Player.gd" type="Script" id=1]
 [ext_resource path="res://src/classes/Grid.gd" type="Script" id=2]
@@ -17,9 +17,25 @@
 [ext_resource path="res://assets/fonts/EduSABeginner-Medium.ttf" type="DynamicFontData" id=15]
 [ext_resource path="res://assets/fonts/EduSABeginner-SemiBold.ttf" type="DynamicFontData" id=16]
 
-[sub_resource type="DynamicFont" id=5]
+[sub_resource type="DynamicFont" id=8]
 size = 96
 font_data = ExtResource( 9 )
+
+[sub_resource type="GDScript" id=7]
+script/source = "extends Label
+
+
+func _on_Main_game_state_changed(new_state) -> void:
+	match new_state:
+		owner.PRE_GAME:
+			hide()
+		owner.IN_PROGRESS:
+			show()
+		owner.PLAYER_WON:
+			hide()
+		owner.ENDED:
+			hide()
+"
 
 [sub_resource type="DynamicFont" id=4]
 size = 94
@@ -53,9 +69,10 @@ size_override_stretch = true
 transparent_bg = true
 
 [node name="Label" type="Label" parent="Viewport"]
-custom_fonts/font = SubResource( 5 )
+custom_fonts/font = SubResource( 8 )
 text = "   W
 A  S  D"
+script = SubResource( 7 )
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -206,7 +223,7 @@ current = true
 size = 20.0
 
 [node name="Sprite3D" type="Sprite3D" parent="CameraPivot/Camera"]
-transform = Transform( 0.707107, 0.707107, 3.09086e-08, -0.353553, 0.353553, 0.866026, 0.612373, -0.612373, 0.499999, 0, -6.69414, -64.1035 )
+transform = Transform( 0.707107, 0.707107, 4.21468e-08, -0.353553, 0.353553, 0.866026, 0.612373, -0.612373, 0.499999, -0.795408, -5.1609, -52.8599 )
 flip_v = true
 texture = SubResource( 6 )
 
@@ -246,6 +263,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0 )
 [node name="Down" type="Position3D" parent="Player/Pivot/Rotator/Mesh"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0 )
 
+[connection signal="game_state_changed" from="." to="Viewport/Label" method="_on_Main_game_state_changed"]
 [connection signal="game_state_changed" from="." to="CanvasLayer/Gui" method="_on_Main_game_state_changed"]
 [connection signal="game_state_changed" from="." to="Grid" method="_on_Main_game_state_changed"]
 [connection signal="toggled" from="CanvasLayer/Gui/VBoxContainer/MusicToggle" to="." method="_on_MusicToggle_toggled"]

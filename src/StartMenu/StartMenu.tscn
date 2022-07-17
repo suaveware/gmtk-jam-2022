@@ -83,9 +83,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 margin_left = -242.0
-margin_top = -29.0
+margin_top = -45.0
 margin_right = 242.0
-margin_bottom = 189.0
+margin_bottom = 173.0
 grow_horizontal = 2
 grow_vertical = 2
 custom_constants/separation = 20
@@ -104,6 +104,7 @@ rect_min_size = Vector2( 0, 99.23 )
 text = "Levels"
 
 [node name="QuitButton" type="Button" parent="VBoxContainer" groups=["button"]]
+visible = false
 margin_top = 238.0
 margin_right = 484.0
 margin_bottom = 337.23
