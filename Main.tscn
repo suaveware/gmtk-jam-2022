@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=2]
+[gd_scene load_steps=29 format=2]
 
 [ext_resource path="res://src/Player/Player.gd" type="Script" id=1]
 [ext_resource path="res://src/classes/Grid.gd" type="Script" id=2]
@@ -20,6 +20,7 @@
 [ext_resource path="res://assets/icons/return.png" type="Texture" id=18]
 [ext_resource path="res://assets/icons/exit.png" type="Texture" id=19]
 [ext_resource path="res://src/classes/TextureButton.tres.gd" type="Script" id=20]
+[ext_resource path="res://assets/icons/arrowLeft.png" type="Texture" id=21]
 
 [sub_resource type="DynamicFont" id=8]
 size = 96
@@ -68,15 +69,47 @@ levels = [ "res://src/levels/level1.tres", "res://src/levels/level2.tres", "res:
 environment = ExtResource( 8 )
 
 [node name="Viewport" type="Viewport" parent="."]
-size = Vector2( 300, 250 )
+size = Vector2( 500, 500 )
 size_override_stretch = true
 transparent_bg = true
 
 [node name="Label" type="Label" parent="Viewport"]
 custom_fonts/font = SubResource( 8 )
-text = "   W
-A  S  D"
+text = "   
+      W
+   A  S  D"
 script = SubResource( 7 )
+
+[node name="TextureRect" type="TextureRect" parent="Viewport/Label"]
+margin_left = 260.0
+margin_top = 40.0
+margin_right = 360.0
+margin_bottom = 140.0
+rect_rotation = 90.0
+texture = ExtResource( 21 )
+
+[node name="TextureRect2" type="TextureRect" parent="Viewport/Label"]
+margin_left = 165.0
+margin_top = 450.0
+margin_right = 265.0
+margin_bottom = 550.0
+rect_rotation = -90.0
+texture = ExtResource( 21 )
+
+[node name="TextureRect3" type="TextureRect" parent="Viewport/Label"]
+margin_left = -10.0
+margin_top = 260.0
+margin_right = 90.0
+margin_bottom = 360.0
+texture = ExtResource( 21 )
+
+[node name="TextureRect4" type="TextureRect" parent="Viewport/Label"]
+margin_left = 460.0
+margin_top = 360.0
+margin_right = 560.0
+margin_bottom = 460.0
+rect_rotation = 180.0
+texture = ExtResource( 21 )
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -272,7 +305,7 @@ current = true
 size = 20.0
 
 [node name="Sprite3D" type="Sprite3D" parent="CameraPivot/Camera"]
-transform = Transform( 0.707107, 0.707107, 4.21468e-08, -0.353553, 0.353553, 0.866026, 0.612373, -0.612373, 0.499999, -0.795408, -5.1609, -52.8599 )
+transform = Transform( 0.707107, 0.707107, 4.21468e-08, -0.353553, 0.353553, 0.866026, 0.612373, -0.612373, 0.499999, -0.782019, -5.16411, -52.8544 )
 flip_v = true
 texture = SubResource( 6 )
 
