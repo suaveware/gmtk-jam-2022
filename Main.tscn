@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=23 format=2]
 
 [ext_resource path="res://src/Player/Player.gd" type="Script" id=1]
 [ext_resource path="res://src/classes/Grid.gd" type="Script" id=2]
@@ -17,13 +17,13 @@
 [ext_resource path="res://assets/fonts/EduSABeginner-Medium.ttf" type="DynamicFontData" id=15]
 [ext_resource path="res://assets/fonts/EduSABeginner-SemiBold.ttf" type="DynamicFontData" id=16]
 
-[sub_resource type="DynamicFont" id=4]
-size = 94
-font_data = ExtResource( 16 )
-
 [sub_resource type="DynamicFont" id=5]
 size = 96
 font_data = ExtResource( 9 )
+
+[sub_resource type="DynamicFont" id=4]
+size = 94
+font_data = ExtResource( 16 )
 
 [sub_resource type="DynamicFont" id=2]
 size = 130
@@ -35,7 +35,7 @@ font_data = ExtResource( 9 )
 size = 64
 font_data = ExtResource( 15 )
 
-[sub_resource type="ViewportTexture" id=4]
+[sub_resource type="ViewportTexture" id=6]
 viewport_path = NodePath("Viewport")
 
 [sub_resource type="SpatialMaterial" id=1]
@@ -66,11 +66,10 @@ theme = ExtResource( 5 )
 script = ExtResource( 10 )
 
 [node name="LevelNumber" type="Label" parent="CanvasLayer/Gui"]
-margin_left = 1829.0
+margin_left = 267.0
 margin_top = 931.0
-margin_right = 1885.0
+margin_right = 323.0
 margin_bottom = 1050.0
-grow_horizontal = 0
 grow_vertical = 0
 custom_fonts/font = SubResource( 4 )
 text = "0"
@@ -85,9 +84,9 @@ text = "Level: "
 [node name="VBoxContainer" type="HBoxContainer" parent="CanvasLayer/Gui"]
 anchor_top = 1.0
 anchor_bottom = 1.0
-margin_left = 27.0
+margin_left = 1688.0
 margin_top = -139.0
-margin_right = 231.0
+margin_right = 1892.0
 margin_bottom = -39.0
 
 [node name="MusicToggle" type="TextureButton" parent="CanvasLayer/Gui/VBoxContainer" groups=["button"]]
@@ -209,7 +208,7 @@ size = 20.0
 [node name="Sprite3D" type="Sprite3D" parent="CameraPivot/Camera"]
 transform = Transform( 0.707107, 0.707107, 3.09086e-08, -0.353553, 0.353553, 0.866026, 0.612373, -0.612373, 0.499999, 0, -6.69414, -64.1035 )
 flip_v = true
-texture = SubResource( 4 )
+texture = SubResource( 6 )
 
 [node name="Tween" type="Tween" parent="CameraPivot"]
 
