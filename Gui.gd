@@ -15,10 +15,10 @@ func _process(delta: float) -> void:
 func _on_Main_game_state_changed(new_state) -> void:
 	match new_state:
 		owner.PRE_GAME:
-			$LevelNumber.hide()
+			$LevelNumber.show()
 			$NiceRoll.hide()
-			$DiceHud.hide()
-			$HBoxContainer.hide()
+			$DiceHud.show()
+			$HBoxContainer.show()
 		owner.IN_PROGRESS:
 			$LevelNumber.show()
 			$DiceHud.show()

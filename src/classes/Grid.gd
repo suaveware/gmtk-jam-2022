@@ -1,6 +1,7 @@
 extends Spatial
 
 signal player_won
+signal level_deloaded
 
 export var tile_size = 2
 
@@ -55,6 +56,27 @@ func load_level(level = null):
 	$Tween.start()
 	yield(get_tree().create_timer(player_fall_delay + 0.3), "timeout")
 	AudioManager.sfx("FullRoll")
+
+func deload_level():
+	for pos in positions.keys():
+		var tile = positions[pos]
+		$Tween.interpolate_property(
+			tile,
+			'translation:y',
+			0, -30, 0.5,
+			Tween.TRANS_CUBIC,
+			Tween.EASE_IN,
+			((pos.x + pos.y) as float) / 20)
+	$Tween.interpolate_property(
+		player,
+		'translation:y',
+		1, 30, 0.5,
+		Tween.TRANS_CUBIC,
+		Tween.EASE_IN
+	)
+	$Tween.start()
+	yield($Tween, "tween_all_completed")
+	emit_signal("level_deloaded")	
 
 func instantiate_tile(x: int, y: int, value: int):
 	var new_tile = tile.instance()

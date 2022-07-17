@@ -39,6 +39,8 @@ func _input(event: InputEvent) -> void:
 	if event is InputEventKey and event.pressed:
 		if event.scancode == KEY_R:
 			AudioManager.play_between_current("Lost")
+			grid.deload_level()
+			yield(grid, "level_deloaded")
 			get_tree().reload_current_scene()
 #			grid.load_level(level)
 		if event.scancode == KEY_B:
