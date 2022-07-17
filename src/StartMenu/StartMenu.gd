@@ -9,6 +9,7 @@ func _ready() -> void:
 
 
 func _on_StartButton_pressed() -> void:
+	GlobalState.level_index = 0
 	get_tree().change_scene("res://src/tutorial/Tutorial.tscn")
 	pass
 

@@ -36,7 +36,8 @@ func _input(event: InputEvent) -> void:
 	if event is InputEventKey and event.pressed:
 		if event.scancode == KEY_R:
 			AudioManager.play_between_current("Lost")
-			grid.load_level(level)
+			get_tree().reload_current_scene()
+#			grid.load_level(level)
 		if event.scancode == KEY_B:
 			get_tree().change_scene("res://src/StartMenu/StartMenu.tscn")
 

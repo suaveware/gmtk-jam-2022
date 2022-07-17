@@ -135,7 +135,7 @@ grow_vertical = 2
 custom_fonts/font = SubResource( 2 )
 text = "Nice roll!"
 
-[node name="NextLevelButton" type="Button" parent="CanvasLayer/Gui/NiceRoll"]
+[node name="NextLevelButton" type="Button" parent="CanvasLayer/Gui/NiceRoll" groups=["button"]]
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5

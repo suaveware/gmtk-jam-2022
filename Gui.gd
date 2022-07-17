@@ -2,7 +2,9 @@ extends Control
 
 
 func _ready() -> void:
-
+	print(AudioManager.is_music_playing())
+	$VBoxContainer/MusicToggle.set_pressed_no_signal(not AudioManager.is_music_playing())
+	$VBoxContainer/SoundToggle.set_pressed_no_signal(not AudioManager.is_sfx_playing())
 	pass
 
 

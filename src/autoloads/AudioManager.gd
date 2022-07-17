@@ -4,11 +4,6 @@ extends Node
 var current_background: String
 var buttons: = []
 
-func _ready() -> void:
-#	for button in get_tree().get_nodes_in_group("button"):
-#		register_button(button)
-	pass
-
 
 func register_button(button: Button) -> void:
 	if not button: return
@@ -61,6 +56,14 @@ func toggle_music() -> void:
 
 func toggle_sound() -> void:
 	AudioServer.set_bus_mute(0, not AudioServer.is_bus_mute(0))
+
+
+func is_music_playing() -> bool:
+	return not AudioServer.is_bus_mute(1)
+
+
+func is_sfx_playing() -> bool:
+	return not AudioServer.is_bus_mute(0)
 
 
 func _input(event: InputEvent) -> void:
