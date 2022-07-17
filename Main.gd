@@ -23,6 +23,9 @@ func _ready() -> void:
 	AudioManager.play("GameLoop")
 	grid.load_level(level)
 
+	for button in get_tree().get_nodes_in_group("button"):
+		AudioManager.register_button(button)
+
 func _physics_process(_delta):
 	for movement in player_movements:
 		if Input.is_action_pressed(movement.input):
@@ -36,7 +39,8 @@ func _input(event: InputEvent) -> void:
 	if event is InputEventKey and event.pressed:
 		if event.scancode == KEY_R:
 			AudioManager.play_between_current("Lost")
-			grid.load_level(level)
+			get_tree().reload_current_scene()
+#			grid.load_level(level)
 		if event.scancode == KEY_B:
 			get_tree().change_scene("res://src/StartMenu/StartMenu.tscn")
 

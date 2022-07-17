@@ -17,6 +17,10 @@ func _ready():
 		button.text = 'Level '+((i+1) as String)
 		button_grid.add_child(button)
 		button.connect("button_up", self, "_on_button_pressed", [i])
+		button.add_to_group("button")
+
+	for button in get_tree().get_nodes_in_group("button"):
+		AudioManager.register_button(button)
 
 
 func _on_button_pressed(level):

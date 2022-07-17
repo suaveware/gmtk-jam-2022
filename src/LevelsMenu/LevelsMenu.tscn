@@ -47,7 +47,7 @@ rect_pivot_offset = Vector2( 270, 76 )
 custom_fonts/font = SubResource( 1 )
 text = "Level selector"
 
-[node name="MenuButton" type="Button" parent="."]
+[node name="MenuButton" type="Button" parent="." groups=["button"]]
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.506
