@@ -1,4 +1,5 @@
 extends Spatial
+class_name Tile
 
 enum Type { UNGLUE = 7 }
 
@@ -12,7 +13,7 @@ const DOT_POSITIONS = [[],
 ]
 
 export var value: int
-
+var grid_position: Vector2
 
 func _ready():
 	match value:
@@ -26,6 +27,3 @@ func _ready():
 				new_dot.set_translation(Vector3(dot_positions[i].x, 1, dot_positions[i].y))
 				new_dot.visible = true
 				$dots.add_child(new_dot)
-
-
-

@@ -37,13 +37,13 @@ func load_level(level = null):
 	translation.z = -tiles_position_average.y - 1
 
 	player_grid_position = level.StartPosition
-	player.translation = Vector3(level.StartPosition.x* tile_size,15,level.StartPosition.y* tile_size) + translation
+	player.translation = Vector3(level.StartPosition.x* tile_size,50,level.StartPosition.y* tile_size) + translation
 
 	var player_fall_delay: = ((level.LevelSize.x + level.LevelSize.y) as float) / 20
 	$Tween.interpolate_property(
 		player,
 		'translation:y',
-		12, 1, 0.65,
+		30, 1, 0.65,
 		Tween.TRANS_BOUNCE,
 		Tween.EASE_OUT,
 		player_fall_delay
@@ -85,6 +85,7 @@ func instantiate_tile(x: int, y: int, value: int):
 	new_tile.value = value
 	call_deferred("add_child", new_tile)
 	new_tile.translation = (Vector3(x, 20, y) * tile_size)
+	new_tile.grid_position = Vector2(x, y)
 	positions[Vector2(x, y)] = new_tile
 	$Tween.interpolate_property(
 		new_tile,

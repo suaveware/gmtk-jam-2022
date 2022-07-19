@@ -59,7 +59,7 @@ expand_margin_top = 10.0
 expand_margin_bottom = 15.0
 
 [sub_resource type="DynamicFont" id=1]
-size = 40
+size = 64
 outline_color = Color( 1, 0.984314, 0.984314, 1 )
 use_filter = true
 font_data = ExtResource( 1 )

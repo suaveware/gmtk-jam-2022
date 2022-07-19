@@ -176,33 +176,36 @@ tracks/3/keys = {
 
 [node name="Tutorial" type="Spatial"]
 script = ExtResource( 4 )
-label_path = NodePath("Control/CenterContainer/TutorialLabel")
+label_path = NodePath("Control/MarginContainer/TutorialLabel")
 slides = [ NodePath("1"), NodePath("2"), NodePath("3") ]
 slideTexts = [ "To be valid, opposite sides of the die must always add up to 7 (6 and 1, 5 and 2, 4 and 3)", "Roll the die to get the dots. Your objective is to dye the die so that it's a valid one", "Some number can be combined to make other numbers, such as 1+2=3" ]
 
 [node name="Control" type="Control" parent="."]
-margin_right = 1920.0
-margin_bottom = 1078.0
+anchor_right = 1.0
+anchor_bottom = 1.0
 
-[node name="CenterContainer" type="CenterContainer" parent="Control"]
+[node name="MarginContainer" type="MarginContainer" parent="Control"]
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_top = -250.0
+margin_left = 50.0
+margin_top = -433.0
+margin_right = -50.0
 
-[node name="TutorialLabel" type="Label" parent="Control/CenterContainer"]
-margin_left = 960.0
-margin_top = 99.0
-margin_right = 960.0
-margin_bottom = 150.0
+[node name="TutorialLabel" type="Label" parent="Control/MarginContainer"]
+margin_top = 90.0
+margin_right = 980.0
+margin_bottom = 342.0
 theme = ExtResource( 3 )
+text = "To be valid, opposite sides of the die must always add up to 7 (6 and 1, 5 and 2, 4 and 3)"
 align = 1
+autowrap = true
+percent_visible = -0.25
 
 [node name="1" type="Spatial" parent="."]
 visible = false
 
 [node name="dice" type="MeshInstance" parent="1"]
-transform = Transform( -0.122728, 0.836163, 0.534574, 0.499695, 0.51745, -0.694658, -0.857463, 0.18187, -0.481332, 0, 0, 0 )
 mesh = ExtResource( 2 )
 material/0 = SubResource( 4 )
 
@@ -313,6 +316,7 @@ autoplay = "tutorial2"
 anims/tutorial2 = SubResource( 5 )
 
 [node name="2" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.712, 0, 0 )
 visible = false
 
 [node name="dice" type="MeshInstance" parent="2"]
@@ -361,7 +365,7 @@ autoplay = "tutorial1"
 anims/tutorial1 = SubResource( 3 )
 
 [node name="3" type="Spatial" parent="."]
-transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 0 )
+transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, -1.064 )
 visible = false
 
 [node name="dice" type="MeshInstance" parent="3"]
@@ -405,4 +409,4 @@ anims/tutorial1 = SubResource( 6 )
 [node name="Camera" type="Camera" parent="."]
 transform = Transform( 0.707107, -0.353553, 0.612373, 0, 0.866026, 0.499999, -0.707107, -0.353553, 0.612373, 38.8885, 31.849, 38.8885 )
 projection = 1
-size = 10.0
+size = 12.0

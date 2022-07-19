@@ -4,7 +4,8 @@ enum { PRE_GAME, IN_PROGRESS, PLAYER_WON, ENDED }
 
 signal game_state_changed(new_state)
 
-onready var grid = get_node("Grid")
+onready var grid = $Grid
+onready var camera = $CameraPivot/Camera
 
 export var levels: = []
 
@@ -22,10 +23,7 @@ func _ready() -> void:
 func _physics_process(_delta):
 	for movement in GlobalState.player_movements:
 		if game_state == IN_PROGRESS and Input.is_action_pressed(movement.input):
-			if grid.player_can_roll(movement.direction):
-				$Player.roll(movement.direction)
-			else:
-				$Player.try_roll(movement.direction)
+			move_player(movement.direction)
 
 
 func _input(event: InputEvent) -> void:
@@ -38,7 +36,25 @@ func _input(event: InputEvent) -> void:
 
 		if event.scancode == KEY_ENTER and game_state == PLAYER_WON:
 			next_level()
+	elif event is InputEventMouseButton and event.pressed:
+		
+		var space_state = get_world().direct_space_state
+		var mouse_pos = event.position
+		var ray_origin = camera.project_ray_origin(mouse_pos)
+		var ray_end = ray_origin + camera.project_ray_normal(mouse_pos)*100
+		var ray_array = space_state.intersect_ray(ray_origin, ray_end)
+		if('collider' in ray_array and ray_array['collider'].get_parent() is Tile):
+			var tile = ray_array.collider.get_parent()
+			print(tile.grid_position)
+			var direction = tile.grid_position - grid.player_grid_position
+			if (direction.length() <=1):
+				move_player(Vector3(direction.x, 0,direction.y))
 
+func move_player(direction):
+	if grid.player_can_roll(direction):
+		$Player.roll(direction)
+	else:
+		$Player.try_roll(direction)
 
 func reset_level() -> void:
 	AudioManager.play_between_current("Lost")
@@ -84,11 +100,11 @@ func _on_Grid_player_won() -> void:
 	self.game_state = PLAYER_WON
 	AudioManager.play_between_current("Victory")
 	$Player.visible = false
-	$victory_dice.visible = true
+	$CameraPivot/Camera/victory_dice.visible = true
 	
 func _on_level_loaded() -> void:
 	$Player.visible = true
-	$victory_dice.visible = false
+	$CameraPivot/Camera/victory_dice.visible = false
 
 func _on_Tween_tween_all_completed() -> void:
 	self.game_state = IN_PROGRESS
